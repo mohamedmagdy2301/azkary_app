@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key, required this.title});
+class MyApp extends StatelessWidget {
+  const MyApp(
+      {super.key,
+      required this.title,
+      required this.color,
+      required this.isdebug});
   final String title;
+  final Color color;
+  final bool isdebug;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(title: Text('Home Page $title')),
-      body: const Center(
-        child: Text('Home Page'),
+    return MaterialApp(
+      debugShowCheckedModeBanner: isdebug,
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(backgroundColor: color),
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: Center(
+          child: Text(
+            "Width: ${MediaQuery.of(context).size.width}\nHeight: ${MediaQuery.of(context).size.height}",
+          ),
+        ),
       ),
     );
   }
