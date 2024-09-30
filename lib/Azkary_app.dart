@@ -1,25 +1,9 @@
-import 'package:azkary_app/core/utils/theming/light_theme.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_screen.dart';
 import 'package:azkary_app/features/home/presentation/veiw/screens/home_screen.dart';
 import 'package:azkary_app/features/sabha/presentation/veiw/screens/sabha_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // fake commit
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.color, required this.isdebug});
-  final Color color;
-  final bool isdebug;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: isdebug,
-      theme: lightTheme,
-      home: const NavBarMainApp(),
-    );
-  }
-}
 
 class NavBarMainApp extends StatefulWidget {
   const NavBarMainApp({
