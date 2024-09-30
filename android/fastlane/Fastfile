@@ -10,6 +10,7 @@ platform :android do
        firebase_cli_token: "1//037QMytKcbrN1CgYIARAAGAMSNwF-L9IrubOhcSDpE35PIn4U6GViq6acDTlrYsinW9ozUlpF-EIL-qeco9yaDNgLx91MAvsc6WY",
        android_artifact_type: "APK",
        android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
+       debug: true
        testers: "mohammedmego15@gmail.com",
        release_notes: "Fisrt Test Fastlane with Firebase App Distribution"
      )
