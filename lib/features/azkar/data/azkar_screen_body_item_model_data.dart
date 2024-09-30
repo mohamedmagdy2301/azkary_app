@@ -19,19 +19,27 @@ List<AzkarScreenBodyItemModel> azkarScreenBodyItemModel = [
     image: "assets/images/2.jpg",
   ),
   AzkarScreenBodyItemModel(
-    title: StringsAppAR.azkarQayamAlLily,
-    image: "assets/images/6.jpg",
+    title: StringsAppAR.tsabha,
+    image: "assets/images/9.jpg",
   ),
   AzkarScreenBodyItemModel(
-    title: StringsAppAR.alEsha,
-    image: "assets/images/3.jpg",
-  ),
-  AzkarScreenBodyItemModel(
-    title: StringsAppAR.azkarAlNoom,
+    title: StringsAppAR.azkarAlIstikhaz,
     image: "assets/images/5.jpg",
   ),
   AzkarScreenBodyItemModel(
-    title: StringsAppAR.azkarMtnwa,
+    title: StringsAppAR.azkarAlslah,
+    image: "assets/images/6.jpg",
+  ),
+  AzkarScreenBodyItemModel(
+    title: StringsAppAR.azkarAlNoom,
+    image: "assets/images/3.jpg",
+  ),
+  AzkarScreenBodyItemModel(
+    title: StringsAppAR.adaiaAlnabiya,
+    image: "assets/images/7.jpg",
+  ),
+  AzkarScreenBodyItemModel(
+    title: StringsAppAR.adaiaQarunia,
     image: "assets/images/4.jpg",
   ),
 ];

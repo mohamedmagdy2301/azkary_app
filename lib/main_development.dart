@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
+      routes: routes,
       localizationsDelegates: const [
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -35,7 +36,7 @@ class _MyAppState extends State<MyApp> {
         Locale("ar", "AE"),
       ],
       locale: const Locale("ar", "AE"),
-      home: const NavBarMainApp(),
+      initialRoute: '/',
     );
   }
 

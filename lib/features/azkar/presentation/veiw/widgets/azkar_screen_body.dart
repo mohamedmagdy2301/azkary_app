@@ -19,7 +19,7 @@ class _AzkarScreenBodyState extends State<AzkarScreenBody> {
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AzkarScreenBodyItem(
               azkarScreenBodyItemModel: azkarScreenBodyItemModel[0],
@@ -85,6 +85,26 @@ class _AzkarScreenBodyState extends State<AzkarScreenBody> {
                   context,
                   AzkarDetailsScreen.routeName,
                   arguments: azkarScreenBodyItemModel[5],
+                );
+              },
+            ),
+            AzkarScreenBodyItem(
+              azkarScreenBodyItemModel: azkarScreenBodyItemModel[6],
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  AzkarDetailsScreen.routeName,
+                  arguments: azkarScreenBodyItemModel[6],
+                );
+              },
+            ),
+            AzkarScreenBodyItem(
+              azkarScreenBodyItemModel: azkarScreenBodyItemModel[7],
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  AzkarDetailsScreen.routeName,
+                  arguments: azkarScreenBodyItemModel[7],
                 );
               },
             ),

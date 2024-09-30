@@ -15,6 +15,8 @@ class AppBarAzkar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       centerTitle: true,
+      flexibleSpace: Container(),
+      elevation: 0,
     );
   }
 
