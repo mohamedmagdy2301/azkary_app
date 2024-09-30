@@ -60,7 +60,6 @@ android {
         }
         development {
             dimension "default"
-            applicationIdSuffix ".dev"
             resValue "string", "app_name", "Azkary Development"
         }
     }
