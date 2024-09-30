@@ -2,7 +2,7 @@ import 'package:azkary_app/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 ThemeData lightTheme = ThemeData(
-  fontFamily: 'poppins',
+  fontFamily: 'Cairo',
   primaryColor: ColorsAppLight.primaryColor,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: const AppBarTheme(
