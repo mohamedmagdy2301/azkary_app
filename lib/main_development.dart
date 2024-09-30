@@ -1,5 +1,9 @@
 import 'package:azkary_app/Azkary_app.dart';
 import 'package:azkary_app/core/utils/theming/light_theme.dart';
+import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_details_screen.dart';
+import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_screen.dart';
+import 'package:azkary_app/features/home/presentation/veiw/screens/home_screen.dart';
+import 'package:azkary_app/features/sabha/presentation/veiw/screens/sabha_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -7,6 +11,7 @@ void main() {
   runApp(const MyApp());
 }
 
+// fake commit
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -21,6 +26,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
+      routes: routes,
       localizationsDelegates: const [
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -30,7 +36,15 @@ class _MyAppState extends State<MyApp> {
         Locale("ar", "AE"),
       ],
       locale: const Locale("ar", "AE"),
-      home: const NavBarMainApp(),
+      initialRoute: '/',
     );
   }
+
+  Map<String, WidgetBuilder> get routes => {
+        '/': (context) => const NavBarMainApp(),
+        HomeScreen.routeName: (context) => const HomeScreen(),
+        AzkarScreen.routeName: (context) => const AzkarScreen(),
+        SabhaScreen.routeName: (context) => const SabhaScreen(),
+        AzkarDetailsScreen.routeName: (context) => const AzkarDetailsScreen(),
+      };
 }

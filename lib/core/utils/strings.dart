@@ -13,9 +13,12 @@ class StringsAppAR {
 
   static const String azkarMtnwa = "اذكار متنوعة";
   static const String azkarQayamAlLily = "أذكار قيام الليل";
-  static const String azkarAlslah = "أذكار السلصلاة";
+  static const String azkarAlslah = "أذكار بعد الصلاة";
   static const String azkarAlNoom = "أذكار النوم";
-  static const String adaiaMtnwa = "أدعية متنوعة";
+  static const String tsabha = "تسابيح";
+  static const String azkarAlIstikhaz = "أذكار الاستيقاظ";
+  static const String adaiaQarunia = "أدعية قرآنية";
+  static const String adaiaAlnabiya = "أدعية الأنبياء";
 
   static const String mawaeedSabha = "مواعيد الصلاة";
   static const String alFajr = "الفجر";
