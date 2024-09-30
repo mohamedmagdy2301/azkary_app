@@ -1,4 +1,4 @@
-import 'package:azkary_app/core/utils/colors.dart';
+import 'package:azkary_app/core/utils/theming/light_theme.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_screen.dart';
 import 'package:azkary_app/features/home/presentation/veiw/screens/home_screen.dart';
 import 'package:azkary_app/features/sabha/presentation/veiw/screens/sabha_screen.dart';
@@ -15,9 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: isdebug,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(backgroundColor: color),
-      ),
+      theme: lightTheme,
       home: const NavBarMainApp(),
     );
   }
@@ -60,36 +58,18 @@ class _NavBarMainAppState extends State<NavBarMainApp> {
   List<BottomNavigationBarItem> bottomNavigationBarItem =
       <BottomNavigationBarItem>[
     const BottomNavigationBarItem(
-      icon: Icon(
-        CupertinoIcons.house,
-        color: ColorsAppLight.primaryColor,
-      ),
-      activeIcon: Icon(
-        CupertinoIcons.house_fill,
-        color: ColorsAppLight.primaryColor,
-      ),
+      icon: Icon(CupertinoIcons.house),
+      activeIcon: Icon(CupertinoIcons.house_fill),
       label: ' ',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(
-        CupertinoIcons.book,
-        color: ColorsAppLight.primaryColor,
-      ),
-      activeIcon: Icon(
-        CupertinoIcons.book_fill,
-        color: ColorsAppLight.primaryColor,
-      ),
+      icon: Icon(CupertinoIcons.book),
+      activeIcon: Icon(CupertinoIcons.book_fill),
       label: ' ',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(
-        CupertinoIcons.gear_alt,
-        color: ColorsAppLight.primaryColor,
-      ),
-      activeIcon: Icon(
-        CupertinoIcons.gear_alt_fill,
-        color: ColorsAppLight.primaryColor,
-      ),
+      icon: Icon(CupertinoIcons.gear_alt),
+      activeIcon: Icon(CupertinoIcons.gear_alt_fill),
       label: ' ',
     ),
   ];
