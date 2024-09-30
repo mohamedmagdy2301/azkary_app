@@ -1,3 +1,4 @@
+import 'package:azkary_app/features/azkar/presentation/veiw/widgets/appbar_azkar.dart';
 import 'package:flutter/material.dart';
 
 class AzkarScreen extends StatelessWidget {
@@ -6,6 +7,7 @@ class AzkarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      appBar: AppBarAzkar(),
       body: Center(
         child: Text('Azkar'),
       ),

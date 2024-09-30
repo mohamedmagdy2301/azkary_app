@@ -15,7 +15,7 @@ class NavBarMainApp extends StatefulWidget {
 }
 
 class _NavBarMainAppState extends State<NavBarMainApp> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,8 @@ class _NavBarMainAppState extends State<NavBarMainApp> {
 
   List<Widget> bodyScreens = [
     const HomeScreen(),
-    const SabhaScreen(),
     const AzkarScreen(),
+    const SabhaScreen(),
   ];
 
   List<BottomNavigationBarItem> bottomNavigationBarItem =
