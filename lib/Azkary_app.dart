@@ -1,3 +1,4 @@
+import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_screen.dart';
 import 'package:azkary_app/features/home/presentation/veiw/screens/home_screen.dart';
 import 'package:azkary_app/features/sabha/presentation/veiw/screens/sabha_screen.dart';
@@ -61,33 +62,33 @@ class _NavBarMainAppState extends State<NavBarMainApp> {
     const BottomNavigationBarItem(
       icon: Icon(
         CupertinoIcons.house,
-        color: Color(0xff8DA05E),
+        color: ColorsAppLight.primaryColor,
       ),
       activeIcon: Icon(
         CupertinoIcons.house_fill,
-        color: Color(0xff8DA05E),
+        color: ColorsAppLight.primaryColor,
       ),
       label: ' ',
     ),
     const BottomNavigationBarItem(
       icon: Icon(
         CupertinoIcons.book,
-        color: Color(0xff8DA05E),
+        color: ColorsAppLight.primaryColor,
       ),
       activeIcon: Icon(
         CupertinoIcons.book_fill,
-        color: Color(0xff8DA05E),
+        color: ColorsAppLight.primaryColor,
       ),
       label: ' ',
     ),
     const BottomNavigationBarItem(
       icon: Icon(
         CupertinoIcons.gear_alt,
-        color: Color(0xff8DA05E),
+        color: ColorsAppLight.primaryColor,
       ),
       activeIcon: Icon(
         CupertinoIcons.gear_alt_fill,
-        color: Color(0xff8DA05E),
+        color: ColorsAppLight.primaryColor,
       ),
       label: ' ',
     ),
