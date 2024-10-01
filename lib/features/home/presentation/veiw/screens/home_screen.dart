@@ -1,13 +1,24 @@
+import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-  static const String routeName = '/home_screen';
+  static const routeName = '/home';
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Theme Cubit Example'),
+      ),
       body: Center(
-        child: Text('Home'),
+        child: ElevatedButton(
+          onPressed: () {
+            context.read<ThemeCubit>().toggleTheme();
+          },
+          child: const Text('Toggle Theme'),
+        ),
       ),
     );
   }
