@@ -1,5 +1,6 @@
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SabhaScreenBodyCircle extends StatelessWidget {
   const SabhaScreenBodyCircle({
@@ -12,18 +13,18 @@ class SabhaScreenBodyCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      width: 200,
-      decoration: const BoxDecoration(
+      height: 200.h,
+      width: 200.w,
+      decoration: BoxDecoration(
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
             color: ColorsAppLight.primaryColor,
-            blurRadius: 25,
-            spreadRadius: 15,
+            blurRadius: 25.sp,
+            spreadRadius: 15.sp,
           ),
         ],
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
             Color.fromARGB(255, 225, 254, 154),
             Color.fromARGB(255, 165, 187, 110),
@@ -40,18 +41,18 @@ class SabhaScreenBodyCircle extends StatelessWidget {
         children: [
           Text(
             counter.toString(),
-            style: const TextStyle(
-              fontSize: 60,
+            style: TextStyle(
+              fontSize: 60.sp,
               fontWeight: FontWeight.bold,
               color: Colors.white,
               fontFamily: "Amiri",
             ),
           ),
-          const SizedBox(height: 10),
-          const Text(
+          SizedBox(height: 10.h),
+          Text(
             'سبح',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 20.sp,
               color: Colors.white,
               fontFamily: "Amiri",
             ),

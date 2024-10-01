@@ -3,6 +3,7 @@ import 'package:azkary_app/features/azkar/data/azkar_screen_body_item_model_data
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_details_screen.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/widgets/azkar_screen_body_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AzkarScreenBody extends StatefulWidget {
   const AzkarScreenBody({super.key});
@@ -41,10 +42,10 @@ class _AzkarScreenBodyState extends State<AzkarScreenBody> {
                 );
               },
             ),
-            const Text(
+            Text(
               StringsAppAR.azkarMtnwa,
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 22.sp,
                 fontWeight: FontWeight.w500,
               ),
             ),

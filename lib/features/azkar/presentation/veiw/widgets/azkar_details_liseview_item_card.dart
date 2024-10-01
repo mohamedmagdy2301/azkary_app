@@ -1,5 +1,6 @@
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AzkarDetailsLiseviewItemCard extends StatelessWidget {
   const AzkarDetailsLiseviewItemCard({
@@ -13,9 +14,9 @@ class AzkarDetailsLiseviewItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 30,
-        vertical: 10,
+      padding: EdgeInsets.symmetric(
+        horizontal: 30.w,
+        vertical: 10.h,
       ),
       child: Card(
         elevation: 2,
@@ -24,39 +25,40 @@ class AzkarDetailsLiseviewItemCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 14,
+          padding: EdgeInsets.symmetric(
+            horizontal: 14.w,
+            vertical: 15.h,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 25),
+              SizedBox(height: 10.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "الذكر ${index + 1}",
-                    style: const TextStyle(
-                      fontSize: 18,
+                    style: TextStyle(
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
                       color: ColorsAppLight.primaryColor,
                     ),
                   ),
                   Text(
                     "التكرار : ${dataList?[index]["count"]}",
-                    style: const TextStyle(
-                      fontSize: 18,
+                    style: TextStyle(
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 35, 42, 18),
+                      color: const Color.fromARGB(255, 35, 42, 18),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               Text(
-                dataList?[index]['content']?.replaceAll(".", ".\n") ?? "",
-                style: const TextStyle(
-                  fontSize: 25,
+                dataList?[index]['content'] ?? "",
+                style: TextStyle(
+                  fontSize: 25.sp,
                   fontWeight: FontWeight.w400,
                   height: 2,
                   wordSpacing: 2.2,

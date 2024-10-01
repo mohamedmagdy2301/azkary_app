@@ -1,7 +1,6 @@
 #include "win32_window.h"
 
 #include <dwmapi.h>
-#include <flutter_windows.h>
 
 #include "resource.h"
 

@@ -1,6 +1,7 @@
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/features/sabha/presentation/veiw/widgets/sabha_screen_body_circle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SabhaScreen extends StatefulWidget {
   const SabhaScreen({super.key});
@@ -21,7 +22,7 @@ class _SabhaScreenState extends State<SabhaScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 200),
+            SizedBox(height: 200.h),
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -30,19 +31,19 @@ class _SabhaScreenState extends State<SabhaScreen> {
               },
               child: SabhaScreenBodyCircle(counter: counter),
             ),
-            const SizedBox(height: 70),
+            SizedBox(height: 70.h),
             IconButton(
               onPressed: () {
                 setState(() {
                   counter = 0;
                 });
               },
-              icon: const CircleAvatar(
+              icon: CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 216, 216, 216),
-                radius: 30,
+                radius: 30.w,
                 child: Icon(
                   Icons.replay,
-                  size: 40,
+                  size: 40.sp,
                   color: ColorsAppLight.primaryColor,
                 ),
               ),
