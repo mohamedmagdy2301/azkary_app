@@ -20,28 +20,26 @@ class SettingsRowItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 60.h,
+          height: 80.h,
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           color: isLightTheme
               ? const Color.fromARGB(255, 242, 242, 242)
-              : const Color.fromARGB(255, 90, 120, 13),
+              : const Color.fromARGB(255, 30, 30, 30),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 title,
-                style: TextStyle(fontSize: 18.sp),
+                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w400),
               ),
               const Spacer(),
               leading,
             ],
           ),
         ),
-        Divider(
-          color: isLightTheme
-              ? const Color.fromARGB(255, 186, 186, 186)
-              : const Color.fromARGB(255, 249, 249, 249),
+        const Divider(
+          color: Color.fromARGB(255, 186, 186, 186),
           thickness: 1,
           height: 1,
         ),

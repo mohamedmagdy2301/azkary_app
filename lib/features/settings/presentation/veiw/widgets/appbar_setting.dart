@@ -11,7 +11,7 @@ class AppBarSettings extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         StringsAppAR.settings,
         style: TextStyle(
-          fontSize: 36.sp,
+          fontSize: 30.sp,
           fontWeight: FontWeight.w400,
         ),
       ),

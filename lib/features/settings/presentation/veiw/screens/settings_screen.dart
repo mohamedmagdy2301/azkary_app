@@ -1,13 +1,11 @@
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
 import 'package:azkary_app/core/theming/light_theme.dart';
-import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/core/utils/strings.dart';
 import 'package:azkary_app/features/settings/presentation/veiw/widgets/appbar_setting.dart';
 import 'package:azkary_app/features/settings/presentation/veiw/widgets/settings_row_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -27,23 +25,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
         children: [
           SettingsRowItem(
             title: StringsAppAR.themesMode,
-            leading: Row(
-              children: [
-                const Icon(Icons.dark_mode),
-                SizedBox(width: 8.w),
-                CupertinoSwitch(
-                  activeColor: ColorsAppLight.primaryColor,
-                  trackColor: Colors.black,
-                  value: themeCubit.state.themeData == lightTheme,
-                  onChanged: (value) {
-                    setState(() {
-                      themeCubit.toggleTheme();
-                    });
-                  },
-                ),
-                SizedBox(width: 8.w),
-                const Icon(Icons.light_mode),
-              ],
+            leading: CupertinoSwitch(
+              activeColor: const Color.fromARGB(255, 90, 123, 8),
+              trackColor: const Color.fromARGB(255, 156, 214, 9),
+              value: themeCubit.state.themeData == lightTheme,
+              onChanged: (value) {
+                setState(() {
+                  themeCubit.toggleTheme();
+                });
+              },
             ),
           ),
           SettingsRowItem(
