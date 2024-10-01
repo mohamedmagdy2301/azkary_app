@@ -10,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await ScreenUtil.ensureScreenSize();
+  await ScreenUtil.ensureScreenSize();
 
   runApp(const MyApp());
 }
@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 758.666),
       minTextAdapt: true,
       splitScreenMode: true,
-      // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
