@@ -31,6 +31,12 @@ class StringsAppAR {
   static const String daiaToday = "دعاء اليوم";
 
   static const String sabah = "سبح";
+
+  static const String settings = "الاعدادات";
+  static const String themesMode = "المظهر والوضع";
+
+  static const String language = "اللغة";
+  static const String aboutApp = "عن التطبيق";
 }
 
 // class StringsAppEN {

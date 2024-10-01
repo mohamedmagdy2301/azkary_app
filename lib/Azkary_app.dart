@@ -1,6 +1,6 @@
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_screen.dart';
-import 'package:azkary_app/features/home/presentation/veiw/screens/home_screen.dart';
 import 'package:azkary_app/features/sabha/presentation/veiw/screens/sabha_screen.dart';
+import 'package:azkary_app/features/settings/presentation/veiw/screens/settings_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // fake commit
@@ -34,9 +34,9 @@ class _NavBarMainAppState extends State<NavBarMainApp> {
   }
 
   List<Widget> bodyScreens = [
-    const HomeScreen(),
-    const AzkarScreen(),
     const SabhaScreen(),
+    const AzkarScreen(),
+    const SettingsScreen(),
   ];
 
   List<BottomNavigationBarItem> bottomNavigationBarItem =
