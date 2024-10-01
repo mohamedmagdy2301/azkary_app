@@ -1,5 +1,8 @@
+import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
+import 'package:azkary_app/core/theming/light_theme.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AzkarDetailsLiseviewItemCard extends StatelessWidget {
@@ -18,6 +21,8 @@ class AzkarDetailsLiseviewItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isLightTheme =
+        context.read<ThemeCubit>().state.themeData == lightTheme;
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 30.w,
@@ -27,7 +32,7 @@ class AzkarDetailsLiseviewItemCard extends StatelessWidget {
         onTap: onCounterChanged,
         child: Card(
           elevation: 4,
-          color: Colors.grey.shade100,
+          color: isLightTheme ? Colors.grey.shade100 : Colors.grey.shade900,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -37,12 +42,14 @@ class AzkarDetailsLiseviewItemCard extends StatelessWidget {
                 height: 50.h,
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10),
                   ),
-                  color: Color.fromARGB(255, 225, 225, 225),
+                  color: isLightTheme
+                      ? const Color.fromARGB(255, 225, 225, 225)
+                      : const Color.fromARGB(255, 68, 68, 68),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,22 +57,27 @@ class AzkarDetailsLiseviewItemCard extends StatelessWidget {
                     Text(
                       "الذكر ${index + 1}",
                       style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: ColorsAppLight.primaryColor,
-                      ),
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.bold,
+                          color: isLightTheme
+                              ? ColorsAppLight.primaryColor
+                              : const Color.fromARGB(255, 156, 214, 9)),
                     ),
                     counter == (int.parse(dataList?[index]["count"] ?? "0"))
-                        ? const Icon(
+                        ? Icon(
                             Icons.check_circle_outline,
-                            color: ColorsAppLight.primaryColor,
+                            color: isLightTheme
+                                ? ColorsAppLight.primaryColor
+                                : const Color.fromARGB(255, 156, 214, 9),
                           )
                         : Text(
                             "التكرار : $counter / ${dataList?[index]["count"]}",
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
-                              color: const Color.fromARGB(255, 35, 42, 18),
+                              color: isLightTheme
+                                  ? const Color.fromARGB(255, 35, 42, 18)
+                                  : const Color.fromARGB(255, 177, 177, 177),
                             ),
                           ),
                   ],

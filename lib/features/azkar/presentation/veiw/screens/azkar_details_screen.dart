@@ -23,9 +23,7 @@ class AzkarDetailsScreen extends StatelessWidget {
           title: Text(azkarScreenBodyItemModel.title),
           centerTitle: true,
           elevation: 0,
-          flexibleSpace: Container(
-            color: Colors.white,
-          ),
+          flexibleSpace: Container(),
         ),
         body: BlocBuilder<AzkarDetailsCubit, AzkarDetailsState>(
           builder: (context, state) {

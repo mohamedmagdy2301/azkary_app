@@ -24,7 +24,7 @@ ThemeData darkTheme = ThemeData(
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: ColorsAppDark.backgroundColor,
-    foregroundColor: Colors.white,
+    foregroundColor: Color.fromARGB(255, 229, 229, 229),
     elevation: 0,
   ),
 );
