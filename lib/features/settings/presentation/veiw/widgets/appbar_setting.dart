@@ -2,16 +2,16 @@ import 'package:azkary_app/core/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppBarAzkar extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarAzkar({super.key});
+class AppBarSettings extends StatelessWidget implements PreferredSizeWidget {
+  const AppBarSettings({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(
-        StringsAppAR.alAzkar,
+        StringsAppAR.settings,
         style: TextStyle(
-          fontSize: 36.sp,
+          fontSize: 30.sp,
           fontWeight: FontWeight.w400,
         ),
       ),
