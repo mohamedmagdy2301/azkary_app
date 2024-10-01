@@ -6,37 +6,43 @@ import 'package:azkary_app/features/home/presentation/veiw/screens/home_screen.d
 import 'package:azkary_app/features/sabha/presentation/veiw/screens/sabha_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // await ScreenUtil.ensureScreenSize();
+
   runApp(const MyApp());
 }
 
 // fake commit
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      routes: routes,
-      localizationsDelegates: const [
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale("ar", "AE"),
-      ],
-      locale: const Locale("ar", "AE"),
-      initialRoute: '/',
+    return ScreenUtilInit(
+      designSize: const Size(360, 758.666),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      // Use builder only if you need to use library outside ScreenUtilInit context
+      builder: (_, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: lightTheme,
+          routes: routes,
+          localizationsDelegates: const [
+            GlobalCupertinoLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale("ar", "AE"),
+          ],
+          locale: const Locale("ar", "AE"),
+          initialRoute: '/',
+        );
+      },
     );
   }
 

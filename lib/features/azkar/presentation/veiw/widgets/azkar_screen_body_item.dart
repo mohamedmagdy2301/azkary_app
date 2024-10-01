@@ -1,5 +1,6 @@
 import 'package:azkary_app/features/azkar/data/azkar_screen_body_item_model_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AzkarScreenBodyItem extends StatelessWidget {
   const AzkarScreenBodyItem({
@@ -16,14 +17,14 @@ class AzkarScreenBodyItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 80,
+        height: 80.h,
         width: double.infinity,
         alignment: Alignment.centerRight,
-        margin: const EdgeInsets.symmetric(
-          vertical: 9.5,
+        margin: EdgeInsets.symmetric(
+          vertical: 9.5.h,
         ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10,
+        padding: EdgeInsets.symmetric(
+          horizontal: 10.w,
         ),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
@@ -41,8 +42,8 @@ class AzkarScreenBodyItem extends StatelessWidget {
         ),
         child: Text(
           azkarScreenBodyItemModel.title,
-          style: const TextStyle(
-            fontSize: 20,
+          style: TextStyle(
+            fontSize: 20.sp,
             fontWeight: FontWeight.w400,
             color: Colors.white,
           ),
