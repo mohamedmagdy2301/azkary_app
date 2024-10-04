@@ -56,5 +56,10 @@ class _NavBarMainAppState extends State<NavBarMainApp> {
       activeIcon: Icon(CupertinoIcons.gear_alt_fill),
       label: ' ',
     ),
+    // const BottomNavigationBarItem(
+    //   icon: Icon(CupertinoIcons.bell),
+    //   activeIcon: Icon(CupertinoIcons.bell_fill),
+    //   label: ' ',
+    // ),
   ];
 }

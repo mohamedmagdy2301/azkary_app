@@ -22,20 +22,24 @@ class LocalNotificationService {
   }
 
 // ! Show Basic Notification
-  static Future showBasicNotification() async {
-    NotificationDetails notificationDetails = NotificationDetails(
+  static Future showBasicNotification({
+    required int id,
+    required String title,
+    required String body,
+  }) async {
+    NotificationDetails notificationDetails = const NotificationDetails(
         android: AndroidNotificationDetails(
       'channel_id 0',
       'basic channel',
       importance: Importance.max,
       priority: Priority.high,
-      sound: RawResourceAndroidNotificationSound(
-          'sound_test.wav'.split('.').first),
+      // sound: RawResourceAndroidNotificationSound(
+      //     'sound_test.wav'.split('.').first),
     ));
     await flutterLocalNotificationsPlugin.show(
-      0,
-      'Basic Notification',
-      'Body',
+      id,
+      title,
+      body,
       notificationDetails,
       payload: 'data',
     );
@@ -80,7 +84,7 @@ class LocalNotificationService {
       'Body',
       // ? To get current scheduled time by local timezone
       tz.TZDateTime.now(tz.local).add(
-        const Duration(seconds: 10),
+        const Duration(seconds: 1),
       ),
       // ? To get static scheduled time by local timezone
       // tz.TZDateTime(tz.local, 2024, 9, !!, !!, !!),
@@ -91,8 +95,40 @@ class LocalNotificationService {
     );
   }
 
+//! Show Daily Scheduled Notification
+  static Future<void> showDailyScheduledNotification() async {
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'channel_id 3',
+        'Daily Scheduled channel',
+        importance: Importance.max,
+        priority: Priority.high,
+      ),
+    );
+
+    tz.initializeTimeZones();
+    final String currentTimeZoneLocal =
+        await FlutterTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(currentTimeZoneLocal));
+    final tz.TZDateTime currentTime = tz.TZDateTime.now(tz.local);
+
+    if (currentTime.hour >= 1 && currentTime.hour < 4) {
+      tz.TZDateTime scheduledDate =
+          currentTime.add(const Duration(seconds: 60));
+      await flutterLocalNotificationsPlugin.zonedSchedule(
+        3,
+        'Daily Scheduled Notification',
+        'Body',
+        scheduledDate,
+        notificationDetails,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+        payload: 'data',
+      );
+    }
+  }
 // // ! Show Daily Scheduled Notification
-//   static Future showDailyScheduledNotification() async {
+//   static Future showDailyyScheduledNotification() async {
 //     const NotificationDetails notificationDetails = NotificationDetails(
 //       android: AndroidNotificationDetails(
 //         'channel_id 3',
