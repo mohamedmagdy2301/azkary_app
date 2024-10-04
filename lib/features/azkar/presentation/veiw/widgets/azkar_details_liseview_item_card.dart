@@ -1,5 +1,4 @@
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
-import 'package:azkary_app/core/theming/light_theme.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,8 +20,8 @@ class AzkarDetailsLiseviewItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLightTheme =
-        context.read<ThemeCubit>().state.themeData == lightTheme;
+    final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
+
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 30.w,

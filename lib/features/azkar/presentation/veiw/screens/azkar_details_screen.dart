@@ -1,5 +1,4 @@
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
-import 'package:azkary_app/core/theming/light_theme.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/features/azkar/data/azkar_data.dart';
 import 'package:azkary_app/features/azkar/data/azkar_screen_body_item_model_data.dart';
@@ -30,8 +29,8 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
     final azkarScreenBodyItemModel =
         ModalRoute.of(context)?.settings.arguments as AzkarScreenBodyItemModel;
     var dataList = azkarData[azkarScreenBodyItemModel.title];
-    bool isLightTheme =
-        context.read<ThemeCubit>().state.themeData == lightTheme;
+
+    final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
 
     return MultiBlocProvider(
       providers: [
@@ -54,9 +53,6 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
               onPressed: () {
                 setState(() {
                   isSelectedNotification = !isSelectedNotification;
-                  colorAppbar = isLightTheme
-                      ? const Color.fromARGB(255, 228, 228, 228)
-                      : Colors.transparent;
                 });
               },
               icon: Icon(
@@ -79,7 +75,9 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
               children: [
                 if (isSelectedNotification)
                   CustomNotificationSettings(
-                    colorAppbar: colorAppbar,
+                    colorAppbar: !isLightTheme
+                        ? Colors.transparent
+                        : const Color.fromARGB(255, 228, 228, 228),
                   ),
                 Expanded(
                   child: ListView.builder(
