@@ -1,5 +1,4 @@
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
-import 'package:azkary_app/core/theming/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,8 +14,8 @@ class SettingsRowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLightTheme =
-        context.read<ThemeCubit>().state.themeData == lightTheme;
+    final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
+
     return Column(
       children: [
         Container(

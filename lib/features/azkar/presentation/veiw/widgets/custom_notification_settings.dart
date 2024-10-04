@@ -1,5 +1,4 @@
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
-import 'package:azkary_app/core/theming/light_theme.dart';
 import 'package:azkary_app/features/azkar/presentation/view_model/notification_manager/azkar_notification_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +14,7 @@ class CustomNotificationSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLightTheme =
-        context.read<ThemeCubit>().state.themeData == lightTheme;
+    final isLightTheme = context.watch<ThemeCubit>().state != ThemeMode.light;
 
     return BlocBuilder<AzkarNotificationCubit, AzkarNotificationState>(
       builder: (context, notificationState) {
@@ -42,8 +40,8 @@ class CustomNotificationSettings extends StatelessWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: isLightTheme
-                          ? const Color.fromARGB(255, 218, 218, 218)
-                          : Color.fromARGB(255, 48, 48, 48),
+                          ? const Color.fromARGB(255, 48, 48, 48)
+                          : const Color.fromARGB(255, 218, 218, 218),
                       shadowColor: Colors.transparent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
