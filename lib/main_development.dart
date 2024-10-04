@@ -1,4 +1,5 @@
 import 'package:azkary_app/Azkary_app.dart';
+import 'package:azkary_app/core/notification_helper/awesome_notification_manager.dart';
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_details_screen.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_screen.dart';
@@ -12,7 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
-
+  await AwesomeNotificationManager.initialize();
   runApp(const MyApp());
 }
 
