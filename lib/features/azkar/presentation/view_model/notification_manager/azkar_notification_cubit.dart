@@ -33,10 +33,14 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
   onTimeChanged(BuildContext context) async {
     selectedTime = await showTimePicker(
       context: context,
-      initialTime: timeOfDay0,
+      initialTime: TimeOfDay(
+          hour: DateTime.now().hour, minute: DateTime.now().minute + 1),
+      initialEntryMode: TimePickerEntryMode.input,
     );
 
-    if (selectedTime != null) {
+    if (selectedTime != null &&
+        selectedTime!.hour >= DateTime.now().hour &&
+        selectedTime!.minute > DateTime.now().minute) {
       // Updating the time
       timeOfDay0 = selectedTime!;
       await saveTimeNotification(timeOfDay0);
@@ -52,12 +56,41 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
         selectedHour: timeOfDay0.hour,
         selectedMinute: timeOfDay0.minute,
       );
-
+      // Updating the UI
       isSwitchEnable = true;
       saveSwitchIsEnableNotification(isSwitchEnable);
       textButton = timeOfDay0.format(context).toString();
       saveTextButtonNotification(textButton);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
+          content: Center(
+            child: Text(
+              'تم تفعيل اشعارات ${azkarScreenBodyItemModel.title}',
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      );
 
+      emit(
+        HasAzkarNotification(
+          isSwitchEnable: isSwitchEnable,
+          textButton: textButton,
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.red,
+          content: Center(
+            child: Text(
+              'الوقت غير صالح لتفعيل الاشعارات\nالرجاء اختيار موعد فى المستقبل',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      );
       emit(
         HasAzkarNotification(
           isSwitchEnable: isSwitchEnable,
@@ -74,6 +107,7 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
     textButton = "اختيار موعد";
     await saveTextButtonNotification(textButton);
     await AwesomeNotifications().cancel(azkarScreenBodyItemModel.id);
+
     emit(NoHasAzkarNotification());
   }
 

@@ -56,6 +56,7 @@ class AwesomeNotificationManager {
       repeats: true, // Set the schedule to repeat daily
       // preciseAlarm: true,
       allowWhileIdle: true,
+
       timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier(),
     );
 

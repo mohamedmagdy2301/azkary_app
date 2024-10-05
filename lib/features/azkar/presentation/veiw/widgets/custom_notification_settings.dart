@@ -70,7 +70,31 @@ class CustomNotificationSettings extends StatelessWidget {
                 // trackColor: const Color.fromARGB(255, 156, 214, 9),
                 value: azkarNotificationCubit.isSwitchEnable,
                 onChanged: (value) {
-                  azkarNotificationCubit.cancelNotification();
+                  if (azkarNotificationCubit.isSwitchEnable) {
+                    azkarNotificationCubit.cancelNotification();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Center(
+                          child: Text(
+                            'تم الغاء تفعيل اشعارات ${azkarNotificationCubit.azkarScreenBodyItemModel.title}',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Center(
+                          child: Text(
+                            'اختار الوقت الذي تريد تفعيل اشعارات ${azkarNotificationCubit.azkarScreenBodyItemModel.title}',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
                 },
               ),
             ],
