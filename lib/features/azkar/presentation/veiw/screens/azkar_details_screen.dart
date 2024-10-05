@@ -1,12 +1,12 @@
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
-import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/features/azkar/data/azkar_data.dart';
 import 'package:azkary_app/features/azkar/data/azkar_screen_body_item_model_data.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/widgets/azkar_details_liseview_item_card.dart';
+import 'package:azkary_app/features/azkar/presentation/veiw/widgets/custom_icon_bell.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/widgets/custom_notification_settings.dart';
 import 'package:azkary_app/features/azkar/presentation/view_model/notification_manager/azkar_notification_cubit.dart';
 import 'package:azkary_app/features/azkar/presentation/view_model/view_azkar/azkar_details_cubit.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:azkary_app/features/azkar/presentation/view_model/view_azkar/azkar_details_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,21 +56,8 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
                   onPressed: () {
                     azkarNotificationCubit.viewSettingsNotification(context);
                   },
-                  icon: Icon(
-                    azkarNotificationCubit.isViewNotification
-                        ? azkarNotificationCubit.isSwitchEnable
-                            ? CupertinoIcons.bell_fill
-                            : CupertinoIcons.bell_slash
-                        : azkarNotificationCubit.isSwitchEnable
-                            ? CupertinoIcons.bell_fill
-                            : CupertinoIcons.bell_slash,
-                    color: azkarNotificationCubit.isViewNotification
-                        ? azkarNotificationCubit.isSwitchEnable
-                            ? ColorsAppLight.primaryColor
-                            : Colors.grey
-                        : azkarNotificationCubit.isSwitchEnable
-                            ? ColorsAppLight.primaryColor
-                            : Colors.grey,
+                  icon: CustomIconBell(
+                    azkarNotificationCubit: azkarNotificationCubit,
                   ),
                 ),
               ],
