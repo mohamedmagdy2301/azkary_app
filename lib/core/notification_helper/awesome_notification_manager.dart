@@ -43,7 +43,7 @@ class AwesomeNotificationManager {
       fullScreenIntent: true,
       displayOnForeground: true,
       displayOnBackground: true,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
     );
     final schedule = NotificationCalendar(
       year: now.year,
