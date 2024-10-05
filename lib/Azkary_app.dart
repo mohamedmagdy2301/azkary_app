@@ -1,4 +1,5 @@
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_screen.dart';
+import 'package:azkary_app/features/home/presentation/veiw/screens/home_screen.dart';
 import 'package:azkary_app/features/sabha/presentation/veiw/screens/sabha_screen.dart';
 import 'package:azkary_app/features/settings/presentation/veiw/screens/settings_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,7 +16,7 @@ class NavBarMainApp extends StatefulWidget {
 }
 
 class _NavBarMainAppState extends State<NavBarMainApp> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,7 @@ class _NavBarMainAppState extends State<NavBarMainApp> {
   }
 
   List<Widget> bodyScreens = [
+    const HomeScreen(),
     const SabhaScreen(),
     const AzkarScreen(),
     const SettingsScreen(),
@@ -42,7 +44,13 @@ class _NavBarMainAppState extends State<NavBarMainApp> {
   List<BottomNavigationBarItem> bottomNavigationBarItem =
       <BottomNavigationBarItem>[
     BottomNavigationBarItem(
+      icon: Image.asset("assets/images/praying.png", width: 30),
+      activeIcon: Image.asset("assets/images/praying.png", width: 35),
+      label: ' ',
+    ),
+    BottomNavigationBarItem(
       icon: Image.asset("assets/images/arabic.png", width: 30),
+      activeIcon: Image.asset("assets/images/arabic.png", width: 35),
       label: ' ',
     ),
     const BottomNavigationBarItem(
