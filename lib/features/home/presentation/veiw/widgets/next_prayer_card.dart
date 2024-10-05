@@ -10,7 +10,7 @@ class NextPrayerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130.h,
+      height: 120.h,
       width: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(

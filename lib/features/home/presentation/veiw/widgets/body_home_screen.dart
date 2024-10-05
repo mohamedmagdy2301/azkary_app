@@ -1,6 +1,7 @@
 import 'package:azkary_app/features/home/presentation/veiw/widgets/next_prayer_card.dart';
 import 'package:azkary_app/features/home/presentation/veiw/widgets/prayer_times_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BodyHomeScreen extends StatelessWidget {
   const BodyHomeScreen({
@@ -9,10 +10,11 @@ class BodyHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        NextPrayerCard(),
-        PrayerTimesCard(),
+        const NextPrayerCard(),
+        SizedBox(height: 20.h),
+        const PrayerTimesCard(),
       ],
     );
   }
