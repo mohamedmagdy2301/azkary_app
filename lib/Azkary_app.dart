@@ -41,9 +41,8 @@ class _NavBarMainAppState extends State<NavBarMainApp> {
 
   List<BottomNavigationBarItem> bottomNavigationBarItem =
       <BottomNavigationBarItem>[
-    const BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.house),
-      activeIcon: Icon(CupertinoIcons.house_fill),
+    BottomNavigationBarItem(
+      icon: Image.asset("assets/images/arabic.png", width: 30),
       label: ' ',
     ),
     const BottomNavigationBarItem(
@@ -56,5 +55,10 @@ class _NavBarMainAppState extends State<NavBarMainApp> {
       activeIcon: Icon(CupertinoIcons.gear_alt_fill),
       label: ' ',
     ),
+    // const BottomNavigationBarItem(
+    //   icon: Icon(CupertinoIcons.bell),
+    //   activeIcon: Icon(CupertinoIcons.bell_fill),
+    //   label: ' ',
+    // ),
   ];
 }

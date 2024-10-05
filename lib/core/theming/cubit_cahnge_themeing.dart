@@ -1,20 +1,36 @@
-import 'package:azkary_app/core/theming/dark_theme.dart';
-import 'package:azkary_app/core/theming/light_theme.dart';
+import 'package:azkary_app/core/local_storage/shared_preferences_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ThemeState {
-  final ThemeData themeData;
+enum AppTheme { light, dark }
 
-  ThemeState({required this.themeData});
-}
+class ThemeCubit extends Cubit<ThemeMode> {
+  static const String _themeKey = "theme_mode";
 
-class ThemeCubit extends Cubit<ThemeState> {
-  ThemeCubit() : super(ThemeState(themeData: lightTheme));
+  ThemeCubit() : super(ThemeMode.light);
 
-  // Toggle between light and dark theme
-  void toggleTheme() {
-    final isLightTheme = state.themeData == lightTheme;
-    emit(ThemeState(themeData: isLightTheme ? darkTheme : lightTheme));
+  Future<void> loadTheme() async {
+    final themeIndex = await SharedPreferencesManager.getData(key: _themeKey);
+    if (themeIndex != null) {
+      emit(ThemeMode.values[themeIndex]);
+    } else {
+      emit(ThemeMode.light);
+    }
+  }
+
+  Future<void> toggleTheme(AppTheme theme) async {
+    if (theme == AppTheme.dark) {
+      emit(ThemeMode.dark);
+      await SharedPreferencesManager.setData(
+        key: _themeKey,
+        value: ThemeMode.dark.index,
+      );
+    } else {
+      emit(ThemeMode.light);
+      await SharedPreferencesManager.setData(
+        key: _themeKey,
+        value: ThemeMode.light.index,
+      );
+    }
   }
 }

@@ -1,5 +1,9 @@
 import 'package:azkary_app/Azkary_app.dart';
+import 'package:azkary_app/core/local_storage/shared_preferences_manager.dart';
+import 'package:azkary_app/core/notification_helper/awesome_notification_manager.dart';
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
+import 'package:azkary_app/core/theming/dark_theme.dart';
+import 'package:azkary_app/core/theming/light_theme.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_details_screen.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_screen.dart';
 import 'package:azkary_app/features/sabha/presentation/veiw/screens/sabha_screen.dart';
@@ -11,14 +15,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await ScreenUtil.ensureScreenSize();
+  await Future.wait([
+    ScreenUtil.ensureScreenSize(),
+    AwesomeNotificationManager.initialize(),
+    SharedPreferencesManager.sharedPreferencesInitialize(),
+  ]);
 
-  runApp(const MyApp());
+  final themeCubit = ThemeCubit();
+  await themeCubit.loadTheme();
+  runApp(MyApp(
+    themeCubit: themeCubit,
+  ));
 }
 
 // fake commit
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final ThemeCubit themeCubit;
+
+  const MyApp({super.key, required this.themeCubit});
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +42,14 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, child) {
         return BlocProvider(
-          create: (_) => ThemeCubit(), // Provide the ThemeCubit
-          child: BlocBuilder<ThemeCubit, ThemeState>(
-            builder: (context, themeState) {
+          create: (_) => themeCubit,
+          child: BlocBuilder<ThemeCubit, ThemeMode>(
+            builder: (context, themeMode) {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
-                theme: themeState.themeData,
+                theme: lightTheme,
+                darkTheme: darkTheme,
+                themeMode: themeMode,
                 routes: routes,
                 localizationsDelegates: const [
                   GlobalCupertinoLocalizations.delegate,
