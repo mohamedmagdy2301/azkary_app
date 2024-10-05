@@ -7,14 +7,14 @@ enum AppTheme { light, dark }
 class ThemeCubit extends Cubit<ThemeMode> {
   static const String _themeKey = "theme_mode";
 
-  ThemeCubit() : super(ThemeMode.system);
+  ThemeCubit() : super(ThemeMode.light);
 
   Future<void> loadTheme() async {
     final themeIndex = await SharedPreferencesManager.getData(key: _themeKey);
     if (themeIndex != null) {
       emit(ThemeMode.values[themeIndex]);
     } else {
-      emit(ThemeMode.system);
+      emit(ThemeMode.light);
     }
   }
 
