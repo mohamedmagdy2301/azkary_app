@@ -77,7 +77,6 @@ class CustomNotificationSettings extends StatelessWidget {
                         content: Center(
                           child: Text(
                             'تم الغاء تفعيل اشعارات ${azkarNotificationCubit.azkarScreenBodyItemModel.title}',
-                            style: const TextStyle(color: Colors.white),
                           ),
                         ),
                       ),

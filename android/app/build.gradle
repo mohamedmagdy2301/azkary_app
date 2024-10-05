@@ -56,11 +56,12 @@ android {
     productFlavors {
         production {
             dimension "default"
-            resValue "string", "app_name", "Azkary Production"
+            resValue "string", "app_name", "فَاذْكُرُونِي أَذْكُرْكُمْ"
         }
         development {
             dimension "default"
-            resValue "string", "app_name", "فَاذْكُرُونِي أَذْكُرْكُمْ"
+            
+            resValue "string", "app_name","Azkary"
         }
     }
     buildTypes {
