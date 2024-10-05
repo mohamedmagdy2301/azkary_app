@@ -21,7 +21,6 @@ class AzkarDetailsScreen extends StatefulWidget {
 }
 
 class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
-  bool isSelectedNotification = false;
   Color colorAppbar = Colors.white;
 
   @override
@@ -41,66 +40,76 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
           create: (context) => AzkarNotificationCubit(azkarScreenBodyItemModel),
         ),
       ],
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(azkarScreenBodyItemModel.title),
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: isLightTheme ? colorAppbar : Colors.transparent,
-          surfaceTintColor: Colors.transparent,
-          actions: [
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  isSelectedNotification = !isSelectedNotification;
-                });
-              },
-              icon: Icon(
-                isSelectedNotification
-                    ? CupertinoIcons.bell_fill
-                    : CupertinoIcons.bell_slash,
-                color: isSelectedNotification
-                    ? ColorsAppLight.primaryColor
-                    : Colors.grey,
-              ),
-            ),
-          ],
-        ),
-        body: BlocBuilder<AzkarDetailsCubit, AzkarDetailsState>(
-          builder: (context, state) {
-            if (state.dataList == null) {
-              return const Center(child: Text("No data available"));
-            }
-            return Column(
-              children: [
-                if (isSelectedNotification)
-                  CustomNotificationSettings(
-                    colorAppbar: !isLightTheme
-                        ? Colors.transparent
-                        : const Color.fromARGB(255, 228, 228, 228),
-                  ),
-                Expanded(
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: state.dataList?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      return AzkarDetailsLiseviewItemCard(
-                        dataList: state.dataList,
-                        index: index,
-                        counter: state.counters[index],
-                        onCounterChanged: () {
-                          context
-                              .read<AzkarDetailsCubit>()
-                              .incrementCounter(index);
-                        },
-                      );
-                    },
+      child: BlocBuilder<AzkarNotificationCubit, AzkarNotificationState>(
+        builder: (context, notificationState) {
+          final azkarNotificationCubit = context.read<AzkarNotificationCubit>();
+
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(azkarScreenBodyItemModel.title),
+              centerTitle: true,
+              elevation: 0,
+              backgroundColor: isLightTheme ? colorAppbar : Colors.transparent,
+              surfaceTintColor: Colors.transparent,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    azkarNotificationCubit.viewSettingsNotification(context);
+                  },
+                  icon: Icon(
+                    azkarNotificationCubit.isViewNotification
+                        ? azkarNotificationCubit.isSwitchEnable
+                            ? CupertinoIcons.bell_fill
+                            : CupertinoIcons.bell_slash
+                        : azkarNotificationCubit.isSwitchEnable
+                            ? CupertinoIcons.bell_fill
+                            : CupertinoIcons.bell_slash,
+                    color: azkarNotificationCubit.isViewNotification
+                        ? azkarNotificationCubit.isSwitchEnable
+                            ? ColorsAppLight.primaryColor
+                            : Colors.grey
+                        : azkarNotificationCubit.isSwitchEnable
+                            ? ColorsAppLight.primaryColor
+                            : Colors.grey,
                   ),
                 ),
               ],
-            );
-          },
-        ),
+            ),
+            body: BlocBuilder<AzkarDetailsCubit, AzkarDetailsState>(
+              builder: (context, state) {
+                return Column(
+                  children: [
+                    if (azkarNotificationCubit.isViewNotification)
+                      CustomNotificationSettings(
+                        azkarNotificationCubit: azkarNotificationCubit,
+                        colorAppbar: !isLightTheme
+                            ? Colors.transparent
+                            : const Color.fromARGB(255, 228, 228, 228),
+                      ),
+                    Expanded(
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: state.dataList?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          return AzkarDetailsLiseviewItemCard(
+                            dataList: state.dataList,
+                            index: index,
+                            counter: state.counters[index],
+                            onCounterChanged: () {
+                              context
+                                  .read<AzkarDetailsCubit>()
+                                  .incrementCounter(index);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }

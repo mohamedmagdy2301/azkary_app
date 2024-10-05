@@ -9,83 +9,79 @@ class CustomNotificationSettings extends StatelessWidget {
   const CustomNotificationSettings({
     super.key,
     required this.colorAppbar,
+    required this.azkarNotificationCubit,
   });
   final Color colorAppbar;
+  final AzkarNotificationCubit azkarNotificationCubit;
 
   @override
   Widget build(BuildContext context) {
     final isLightTheme = context.watch<ThemeCubit>().state != ThemeMode.light;
 
-    return BlocBuilder<AzkarNotificationCubit, AzkarNotificationState>(
-      builder: (context, notificationState) {
-        final azkarNotificationCubit = context.read<AzkarNotificationCubit>();
-
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              height: 80.h,
-              width: double.infinity,
-              color: colorAppbar,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    "التنبيهات ",
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: isLightTheme
-                          ? const Color.fromARGB(255, 48, 48, 48)
-                          : const Color.fromARGB(255, 218, 218, 218),
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        side: const BorderSide(
-                          color: Color.fromARGB(255, 153, 153, 153),
-                          width: 0.5,
-                        ),
-                      ),
-                      elevation: 0,
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12.w,
-                      ),
-                    ),
-                    onPressed: () async {
-                      await azkarNotificationCubit.onTimeChanged(context);
-                    },
-                    child: Text(
-                      azkarNotificationCubit.textButton,
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  CupertinoSwitch(
-                    // activeColor: const Color.fromARGB(255, 90, 123, 8),
-                    // trackColor: const Color.fromARGB(255, 156, 214, 9),
-                    value: azkarNotificationCubit.isSwitchEnable,
-                    onChanged: (value) {
-                      azkarNotificationCubit.cancelNotification();
-                    },
-                  ),
-                ],
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          height: 80.h,
+          width: double.infinity,
+          color: colorAppbar,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                "التنبيهات ",
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
-            const Divider(
-              color: Color.fromARGB(255, 186, 186, 186),
-              thickness: .5,
-              height: .5,
-            )
-          ],
-        );
-      },
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: isLightTheme
+                      ? const Color.fromARGB(255, 48, 48, 48)
+                      : const Color.fromARGB(255, 218, 218, 218),
+                  shadowColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    side: const BorderSide(
+                      color: Color.fromARGB(255, 153, 153, 153),
+                      width: 0.5,
+                    ),
+                  ),
+                  elevation: 0,
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.w,
+                  ),
+                ),
+                onPressed: () async {
+                  await azkarNotificationCubit.onTimeChanged(context);
+                },
+                child: Text(
+                  azkarNotificationCubit.textButton,
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              CupertinoSwitch(
+                // activeColor: const Color.fromARGB(255, 90, 123, 8),
+                // trackColor: const Color.fromARGB(255, 156, 214, 9),
+                value: azkarNotificationCubit.isSwitchEnable,
+                onChanged: (value) {
+                  azkarNotificationCubit.cancelNotification();
+                },
+              ),
+            ],
+          ),
+        ),
+        const Divider(
+          color: Color.fromARGB(255, 186, 186, 186),
+          thickness: .5,
+          height: .5,
+        )
+      ],
     );
   }
 }
