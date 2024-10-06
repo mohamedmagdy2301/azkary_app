@@ -57,54 +57,54 @@ class PrayerTimesCard extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 8.h),
-                  PrayerTimeRow(
+                  const PrayerTimeRow(
                     title: StringsAppAR.alFajr,
-                    time: "0${DateTime.now().hour + 1}:45 ص",
+                    time: "04:41 ص",
                     colorText: Colors.grey,
                   ),
                   const Divider(
                     thickness: .3,
                     height: 0,
                   ),
-                  PrayerTimeRow(
-                    title: StringsAppAR.alFajr,
-                    time: "0${DateTime.now().hour + 1}:45 ص",
+                  const PrayerTimeRow(
+                    title: StringsAppAR.alShoroq,
+                    time: "06:09 ص",
                     colorText: Colors.grey,
                   ),
                   const Divider(
                     thickness: .3,
                     height: 0,
                   ),
-                  PrayerTimeRow(
-                    title: StringsAppAR.alFajr,
-                    time: "0${DateTime.now().hour + 1}:45 ص",
+                  const PrayerTimeRow(
+                    title: StringsAppAR.alZaher,
+                    time: "11:36 ص",
                     colorText: ColorsAppLight.primaryColor,
                   ),
                   const Divider(
                     thickness: .3,
                     height: 0,
                   ),
-                  PrayerTimeRow(
+                  const PrayerTimeRow(
                     title: StringsAppAR.alFajr,
-                    time: "0${DateTime.now().hour + 1}:45 ص",
+                    time: "02:45 م",
                     colorText: Colors.black,
                   ),
                   const Divider(
                     thickness: .3,
                     height: 0,
                   ),
-                  PrayerTimeRow(
+                  const PrayerTimeRow(
                     title: StringsAppAR.alFajr,
-                    time: "0${DateTime.now().hour + 1}:45 ص",
+                    time: "05:08 م",
                     colorText: Colors.black,
                   ),
                   const Divider(
                     thickness: .3,
                     height: 0,
                   ),
-                  PrayerTimeRow(
+                  const PrayerTimeRow(
                     title: StringsAppAR.alFajr,
-                    time: "0${DateTime.now().hour + 1}:45 ص",
+                    time: "06:27 م",
                     colorText: Colors.black,
                   ),
                 ],

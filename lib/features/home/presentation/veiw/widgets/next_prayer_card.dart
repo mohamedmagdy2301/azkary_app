@@ -10,14 +10,14 @@ class NextPrayerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120.h,
+      height: 130.h,
       width: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.fromARGB(255, 173, 210, 80),
+            Color.fromARGB(255, 193, 231, 98),
             ColorsAppLight.primaryColor,
-            Color.fromARGB(255, 86, 105, 39),
+            Color.fromARGB(255, 107, 131, 49),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -39,6 +39,7 @@ class NextPrayerCard extends StatelessWidget {
             children: [
               Icon(
                 Icons.location_on_outlined,
+                color: Colors.white,
                 size: 20.sp,
               ),
               Text(
