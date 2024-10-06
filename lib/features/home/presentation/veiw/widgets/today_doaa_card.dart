@@ -1,6 +1,8 @@
+import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/core/utils/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TodayDoaaCard extends StatelessWidget {
@@ -10,11 +12,15 @@ class TodayDoaaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
+
     return SizedBox(
       height: 130.h,
       child: Card(
         elevation: 0,
-        color: Colors.grey.shade100,
+        color: isLightTheme
+            ? Colors.grey.shade100
+            : const Color.fromARGB(255, 31, 31, 31),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
@@ -45,7 +51,7 @@ class TodayDoaaCard extends StatelessWidget {
                     fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                     height: 1.5,
-                    color: Colors.black,
+                    color: isLightTheme ? Colors.black : Colors.white,
                     fontFamily: "Amiri"),
               ),
             ],

@@ -1,7 +1,9 @@
+import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/core/utils/strings.dart';
 import 'package:azkary_app/features/home/presentation/veiw/widgets/prayer_time_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PrayerTimesCard extends StatelessWidget {
@@ -9,12 +11,15 @@ class PrayerTimesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
     return Container(
       width: double.infinity,
       height: 350.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
-        color: Colors.grey.shade100,
+        color: isLightTheme
+            ? Colors.grey.shade100
+            : const Color.fromARGB(255, 31, 31, 31),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -84,28 +89,28 @@ class PrayerTimesCard extends StatelessWidget {
                     thickness: .3,
                     height: 0,
                   ),
-                  const PrayerTimeRow(
+                  PrayerTimeRow(
                     title: StringsAppAR.alFajr,
                     time: "02:45 م",
-                    colorText: Colors.black,
+                    colorText: isLightTheme ? Colors.black : Colors.white,
                   ),
                   const Divider(
                     thickness: .3,
                     height: 0,
                   ),
-                  const PrayerTimeRow(
+                  PrayerTimeRow(
                     title: StringsAppAR.alFajr,
                     time: "05:08 م",
-                    colorText: Colors.black,
+                    colorText: isLightTheme ? Colors.black : Colors.white,
                   ),
                   const Divider(
                     thickness: .3,
                     height: 0,
                   ),
-                  const PrayerTimeRow(
+                  PrayerTimeRow(
                     title: StringsAppAR.alFajr,
                     time: "06:27 م",
-                    colorText: Colors.black,
+                    colorText: isLightTheme ? Colors.black : Colors.white,
                   ),
                 ],
               ),
