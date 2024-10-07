@@ -1,17 +1,23 @@
 // Get the current time
 
+import 'dart:developer';
+
 import 'package:azkary_app/features/home/data/prayer_time_repo_impl.dart';
 
-class FindPrayerNames {
-  static DateTime now = DateTime.now();
-  static List<String> nextPrayer = [];
-  static List<String> pastPrayer = [];
-  static DateTime currentPrayerTime = DateTime.now();
+Map<String, List<String>> findPrayerNames() {
+  DateTime now = DateTime.now();
+  List<String> nextPrayerNames = [];
+  List<String> pastPrayerNames = [];
 
-  static Map<String, List<String>> stutasPrayerTimes = {};
-  static Map<String, List<String>> findPrayerNames() {
-    PrayerTimesRepository.timings.forEach(
-      (prayerName, prayerTimeString) {
+  Map<String, List<String>> stutasPrayerNames = {};
+  PrayerTimesRepository.timings.forEach(
+    (prayerName, prayerTimeString) {
+      if (prayerName == "Sunset" ||
+          prayerName == "Imsak" ||
+          prayerName == "Firstthird" ||
+          prayerName == "Lastthird" ||
+          prayerName == "Midnight") {
+      } else {
         DateTime prayerTime = DateTime(
           now.year,
           now.month,
@@ -20,18 +26,23 @@ class FindPrayerNames {
           int.parse(prayerTimeString.split(":")[1]),
         );
         if (now.isAfter(prayerTime)) {
-          pastPrayer.add(prayerName);
+          pastPrayerNames.add(prayerName);
         } else {
-          nextPrayer.add(prayerName);
+          nextPrayerNames.add(prayerName);
         }
-      },
-    );
-    if (nextPrayer.isEmpty) {
-      nextPrayer = pastPrayer;
-      pastPrayer = [];
-    }
-
-    stutasPrayerTimes = {"pastPrayer": pastPrayer, "nextPrayer": nextPrayer};
-    return stutasPrayerTimes;
+      }
+    },
+  );
+  if (nextPrayerNames.isEmpty) {
+    nextPrayerNames = pastPrayerNames;
+    pastPrayerNames = [];
   }
+  log("nextPrayer: $nextPrayerNames");
+  log("pastPrayer: $pastPrayerNames");
+
+  stutasPrayerNames = {
+    "pastPrayer": pastPrayerNames,
+    "nextPrayer": nextPrayerNames
+  };
+  return stutasPrayerNames;
 }

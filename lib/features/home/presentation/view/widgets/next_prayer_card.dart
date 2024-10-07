@@ -35,7 +35,7 @@ class _NextPrayerCardState extends State<NextPrayerCard> {
 
   void updatePrayerTime() {
     setState(() {
-      remainingTime = FindPrayerTimes.findPrayerTimes();
+      remainingTime = findPrayerTimes();
     });
   }
 

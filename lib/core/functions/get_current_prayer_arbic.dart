@@ -11,7 +11,7 @@ String getCurrentPrayerByArabic() {
     "Isha": "العشاء",
   };
 
-  nextPrayerName = FindPrayerNames.findPrayerNames()["nextPrayer"]![0];
+  nextPrayerName = findPrayerNames()["nextPrayer"]![0];
 
   return prayerNamesArabic[nextPrayerName]!;
 }
