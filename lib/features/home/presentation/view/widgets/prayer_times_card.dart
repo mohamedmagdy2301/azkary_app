@@ -1,3 +1,4 @@
+import 'package:azkary_app/core/functions/get_status_prayer_name.dart';
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/core/utils/strings.dart';
@@ -7,20 +8,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PrayerTimesCard extends StatelessWidget {
+class PrayerTimesCard extends StatefulWidget {
   const PrayerTimesCard({super.key, required this.prayerTimes});
   final List<PrayerTimesEntity> prayerTimes;
 
   @override
+  State<PrayerTimesCard> createState() => _PrayerTimesCardState();
+}
+
+class _PrayerTimesCardState extends State<PrayerTimesCard> {
+  final List nextPrayerTime = findPrayerNames()['nextPrayer']!;
+
+  Color updatePrayerTime(prayerName, isLightTheme) {
+    for (var prayer in nextPrayerTime) {
+      if (prayer == prayerName) {
+        if (nextPrayerTime[0] == prayerName) {
+          return ColorsAppLight.primaryColor;
+        }
+        return isLightTheme ? Colors.black : Colors.white;
+      }
+    }
+    return Colors.grey;
+  }
+
+  @override
   Widget build(BuildContext context) {
     final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
-    String fajr = prayerTimes[0].fajrTime;
-
-    String sunrise = prayerTimes[0].sunriseTime;
-    String dhuhr = prayerTimes[0].dhuhrTime;
-    String asr = prayerTimes[0].asrTime;
-    String maghrib = prayerTimes[0].maghribTime;
-    String isha = prayerTimes[0].ishaTime;
+    String fajr = widget.prayerTimes[0].fajrTime;
+    String sunrise = widget.prayerTimes[0].sunriseTime;
+    String dhuhr = widget.prayerTimes[0].dhuhrTime;
+    String asr = widget.prayerTimes[0].asrTime;
+    String maghrib = widget.prayerTimes[0].maghribTime;
+    String isha = widget.prayerTimes[0].ishaTime;
 
     return Container(
       width: double.infinity,
@@ -75,7 +94,7 @@ class PrayerTimesCard extends StatelessWidget {
                   PrayerTimeRow(
                     title: StringsAppAR.alFajr,
                     time: " $fajr ص",
-                    colorText: Colors.grey,
+                    colorText: updatePrayerTime('Fajr', isLightTheme),
                   ),
                   const Divider(
                     thickness: .3,
@@ -84,7 +103,7 @@ class PrayerTimesCard extends StatelessWidget {
                   PrayerTimeRow(
                     title: StringsAppAR.alShoroq,
                     time: "$sunrise ص",
-                    colorText: Colors.grey,
+                    colorText: updatePrayerTime('Sunrise', isLightTheme),
                   ),
                   const Divider(
                     thickness: .3,
@@ -93,7 +112,7 @@ class PrayerTimesCard extends StatelessWidget {
                   PrayerTimeRow(
                     title: StringsAppAR.alZaher,
                     time: " $dhuhr ص",
-                    colorText: ColorsAppLight.primaryColor,
+                    colorText: updatePrayerTime('Dhuhr', isLightTheme),
                   ),
                   const Divider(
                     thickness: .3,
@@ -102,7 +121,7 @@ class PrayerTimesCard extends StatelessWidget {
                   PrayerTimeRow(
                     title: StringsAppAR.alAsr,
                     time: "$asr  م ",
-                    colorText: isLightTheme ? Colors.black : Colors.white,
+                    colorText: updatePrayerTime('Asr', isLightTheme),
                   ),
                   const Divider(
                     thickness: .3,
@@ -111,7 +130,7 @@ class PrayerTimesCard extends StatelessWidget {
                   PrayerTimeRow(
                     title: StringsAppAR.alMagreb,
                     time: " $maghrib  م ",
-                    colorText: isLightTheme ? Colors.black : Colors.white,
+                    colorText: updatePrayerTime('Maghrib', isLightTheme),
                   ),
                   const Divider(
                     thickness: .3,
@@ -120,7 +139,7 @@ class PrayerTimesCard extends StatelessWidget {
                   PrayerTimeRow(
                     title: StringsAppAR.alEsha,
                     time: " $isha  م ",
-                    colorText: isLightTheme ? Colors.black : Colors.white,
+                    colorText: updatePrayerTime('Isha', isLightTheme),
                   ),
                 ],
               ),
