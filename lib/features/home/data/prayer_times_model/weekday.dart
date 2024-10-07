@@ -13,7 +13,4 @@ class Weekday {
         'en': en,
         'ar': ar,
       };
-
-  @override
-  List<Object?> get props => [en, ar];
 }

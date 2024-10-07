@@ -26,7 +26,4 @@ class Method {
         'params': params?.toJson(),
         'location': location?.toJson(),
       };
-
-  @override
-  List<Object?> get props => [id, name, params, location];
 }

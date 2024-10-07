@@ -13,7 +13,4 @@ class Params {
         'Fajr': fajr,
         'Isha': isha,
       };
-
-  @override
-  List<Object?> get props => [fajr, isha];
 }

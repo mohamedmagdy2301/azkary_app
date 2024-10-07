@@ -16,7 +16,4 @@ class Month {
         'en': en,
         'ar': ar,
       };
-
-  @override
-  List<Object?> get props => [number, en, ar];
 }

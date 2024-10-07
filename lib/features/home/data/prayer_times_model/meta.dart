@@ -47,18 +47,4 @@ class Meta {
         'school': school,
         'offset': offset?.toJson(),
       };
-
-  @override
-  List<Object?> get props {
-    return [
-      latitude,
-      longitude,
-      timezone,
-      method,
-      latitudeAdjustmentMethod,
-      midnightMode,
-      school,
-      offset,
-    ];
-  }
 }

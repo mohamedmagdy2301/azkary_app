@@ -1,5 +1,5 @@
 import 'package:azkary_app/core/functions/convert_en_to_ar_months.dart';
-import 'package:azkary_app/core/functions/get_current_prayer.dart';
+import 'package:azkary_app/core/functions/get_current_prayer_arbic.dart';
 import 'package:azkary_app/features/home/domain/prayer_times_entity.dart';
 
 import 'date.dart';
@@ -19,7 +19,7 @@ class PrayerTimesModel extends PrayerTimesEntity {
           dayWeekHijri: date?.hijri?.weekday?.ar ?? "none",
           monthHijri: date?.hijri?.month?.ar ?? "none",
           yearHijri: date?.hijri?.year ?? "none",
-          nextPrayer: findPrayerTimes(timings?.toJson()) ?? "none",
+          nextPrayer: getCurrentPrayerByArabic(),
           fajrTime: timings?.fajr ?? "none",
           sunriseTime: timings?.sunrise ?? "none",
           dhuhrTime: timings?.dhuhr ?? "none",
@@ -47,7 +47,4 @@ class PrayerTimesModel extends PrayerTimesEntity {
         'date': date?.toJson(),
         'meta': meta?.toJson(),
       };
-
-  @override
-  List<Object?> get props => [timings, date, meta];
 }

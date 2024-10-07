@@ -50,18 +50,4 @@ class Hijri {
         'designation': designation?.toJson(),
         'holidays': holidays,
       };
-
-  @override
-  List<Object?> get props {
-    return [
-      date,
-      format,
-      day,
-      weekday,
-      month,
-      year,
-      designation,
-      holidays,
-    ];
-  }
 }

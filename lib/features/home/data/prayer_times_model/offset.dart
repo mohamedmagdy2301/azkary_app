@@ -44,19 +44,4 @@ class Offset {
         'Isha': isha,
         'Midnight': midnight,
       };
-
-  @override
-  List<Object?> get props {
-    return [
-      imsak,
-      fajr,
-      sunrise,
-      dhuhr,
-      asr,
-      maghrib,
-      sunset,
-      isha,
-      midnight,
-    ];
-  }
 }

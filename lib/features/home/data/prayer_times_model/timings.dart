@@ -52,21 +52,4 @@ class Timings {
         'Firstthird': firstthird,
         'Lastthird': lastthird,
       };
-
-  @override
-  List<Object?> get props {
-    return [
-      fajr,
-      sunrise,
-      dhuhr,
-      asr,
-      sunset,
-      maghrib,
-      isha,
-      imsak,
-      midnight,
-      firstthird,
-      lastthird,
-    ];
-  }
 }

@@ -13,7 +13,4 @@ class Location {
         'latitude': latitude,
         'longitude': longitude,
       };
-
-  @override
-  List<Object?> get props => [latitude, longitude];
 }

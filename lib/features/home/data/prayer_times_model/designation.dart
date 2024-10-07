@@ -13,7 +13,4 @@ class Designation {
         'abbreviated': abbreviated,
         'expanded': expanded,
       };
-
-  @override
-  List<Object?> get props => [abbreviated, expanded];
 }

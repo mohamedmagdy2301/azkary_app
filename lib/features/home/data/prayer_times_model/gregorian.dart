@@ -46,17 +46,4 @@ class Gregorian {
         'year': year,
         'designation': designation?.toJson(),
       };
-
-  @override
-  List<Object?> get props {
-    return [
-      date,
-      format,
-      day,
-      weekday,
-      month,
-      year,
-      designation,
-    ];
-  }
 }

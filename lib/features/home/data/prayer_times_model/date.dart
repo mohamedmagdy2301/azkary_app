@@ -26,7 +26,4 @@ class Date {
         'hijri': hijri?.toJson(),
         'gregorian': gregorian?.toJson(),
       };
-
-  @override
-  List<Object?> get props => [readable, timestamp, hijri, gregorian];
 }
