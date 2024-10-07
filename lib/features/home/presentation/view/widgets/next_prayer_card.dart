@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:azkary_app/core/functions/get_next_prayer_time.dart';
+import 'package:azkary_app/core/functions/get_status_prayer_time.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/features/home/domain/prayer_times_entity.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +35,7 @@ class _NextPrayerCardState extends State<NextPrayerCard> {
 
   void updatePrayerTime() {
     setState(() {
-      remainingTime = findNextPrayerAndDifference();
+      remainingTime = FindPrayerTimes.findPrayerTimes();
     });
   }
 
