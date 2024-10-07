@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_screen.dart';
@@ -35,8 +37,6 @@ class _MainScaffoldState extends State<MainScaffold> {
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
-    final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
-
     return [
       PersistentBottomNavBarItem(
         icon: Image.asset(
