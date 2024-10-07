@@ -1,14 +1,54 @@
+import 'dart:async';
+
+import 'package:azkary_app/core/functions/get_next_prayer_time.dart';
 import 'package:azkary_app/core/utils/colors.dart';
+import 'package:azkary_app/features/home/domain/prayer_times_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class NextPrayerCard extends StatelessWidget {
+class NextPrayerCard extends StatefulWidget {
   const NextPrayerCard({
     super.key,
+    required this.prayerTimes,
   });
+  final List<PrayerTimesEntity> prayerTimes;
+
+  @override
+  State<NextPrayerCard> createState() => _NextPrayerCardState();
+}
+
+class _NextPrayerCardState extends State<NextPrayerCard> {
+  Timer? timer;
+  String remainingTime = '';
+
+  Map<String, String> prayerTimings = {};
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (Timer t) => updatePrayerTime(),
+    );
+    updatePrayerTime();
+  }
+
+  void updatePrayerTime() {
+    setState(() {
+      remainingTime = findNextPrayerAndDifference();
+    });
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    String nextPrayer = widget.prayerTimes[0].nextPrayer;
+
     return Container(
       height: 130.h,
       width: double.infinity,
@@ -68,7 +108,7 @@ class NextPrayerCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'صلاة الظهر',
+                    'صلاة $nextPrayer',
                     style: TextStyle(
                       fontSize: 25.sp,
                       color: Colors.white,
@@ -81,15 +121,16 @@ class NextPrayerCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    "15:20",
+                    remainingTime,
                     style: TextStyle(
                       fontSize: 26.sp,
                       color: Colors.white,
                       fontWeight: FontWeight.w900,
                     ),
                   ),
+                  SizedBox(width: 5.w),
                   Text(
-                    'دقيقة',
+                    'ساعة',
                     style: TextStyle(
                       fontSize: 15.sp,
                       color: Colors.white,

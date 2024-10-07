@@ -41,7 +41,13 @@ dependencies:
   awesome_notifications: ^0.9.3+1
   flutter_localizations:
     sdk: flutter
-
+  adhan: ^2.0.0+1
+  intl: ^0.19.0
+  http: ^1.2.2
+  equatable: ^2.0.5
+  dio: ^5.7.0
+  persistent_bottom_nav_bar: ^6.2.1
+ 
 dev_dependencies:
   flutter_test:
     sdk: flutter

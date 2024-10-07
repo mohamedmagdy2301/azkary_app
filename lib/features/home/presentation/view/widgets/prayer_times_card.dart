@@ -1,17 +1,27 @@
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/core/utils/strings.dart';
-import 'package:azkary_app/features/home/presentation/veiw/widgets/prayer_time_row.dart';
+import 'package:azkary_app/features/home/domain/prayer_times_entity.dart';
+import 'package:azkary_app/features/home/presentation/view/widgets/prayer_time_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PrayerTimesCard extends StatelessWidget {
-  const PrayerTimesCard({super.key});
+  const PrayerTimesCard({super.key, required this.prayerTimes});
+  final List<PrayerTimesEntity> prayerTimes;
 
   @override
   Widget build(BuildContext context) {
     final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
+    String fajr = prayerTimes[0].fajrTime;
+
+    String sunrise = prayerTimes[0].sunriseTime;
+    String dhuhr = prayerTimes[0].dhuhrTime;
+    String asr = prayerTimes[0].asrTime;
+    String maghrib = prayerTimes[0].maghribTime;
+    String isha = prayerTimes[0].ishaTime;
+
     return Container(
       width: double.infinity,
       height: 350.h,
@@ -62,27 +72,27 @@ class PrayerTimesCard extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 8.h),
-                  const PrayerTimeRow(
+                  PrayerTimeRow(
                     title: StringsAppAR.alFajr,
-                    time: "04:41 ص",
+                    time: " $fajr ص",
                     colorText: Colors.grey,
                   ),
                   const Divider(
                     thickness: .3,
                     height: 0,
                   ),
-                  const PrayerTimeRow(
+                  PrayerTimeRow(
                     title: StringsAppAR.alShoroq,
-                    time: "06:09 ص",
+                    time: "$sunrise ص",
                     colorText: Colors.grey,
                   ),
                   const Divider(
                     thickness: .3,
                     height: 0,
                   ),
-                  const PrayerTimeRow(
+                  PrayerTimeRow(
                     title: StringsAppAR.alZaher,
-                    time: "11:36 ص",
+                    time: " $dhuhr ص",
                     colorText: ColorsAppLight.primaryColor,
                   ),
                   const Divider(
@@ -90,8 +100,8 @@ class PrayerTimesCard extends StatelessWidget {
                     height: 0,
                   ),
                   PrayerTimeRow(
-                    title: StringsAppAR.alFajr,
-                    time: "02:45 م",
+                    title: StringsAppAR.alAsr,
+                    time: "$asr  م ",
                     colorText: isLightTheme ? Colors.black : Colors.white,
                   ),
                   const Divider(
@@ -99,8 +109,8 @@ class PrayerTimesCard extends StatelessWidget {
                     height: 0,
                   ),
                   PrayerTimeRow(
-                    title: StringsAppAR.alFajr,
-                    time: "05:08 م",
+                    title: StringsAppAR.alMagreb,
+                    time: " $maghrib  م ",
                     colorText: isLightTheme ? Colors.black : Colors.white,
                   ),
                   const Divider(
@@ -108,8 +118,8 @@ class PrayerTimesCard extends StatelessWidget {
                     height: 0,
                   ),
                   PrayerTimeRow(
-                    title: StringsAppAR.alFajr,
-                    time: "06:27 م",
+                    title: StringsAppAR.alEsha,
+                    time: " $isha  م ",
                     colorText: isLightTheme ? Colors.black : Colors.white,
                   ),
                 ],

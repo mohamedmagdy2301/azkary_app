@@ -8,10 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CustomNotificationSettings extends StatelessWidget {
   const CustomNotificationSettings({
     super.key,
-    required this.colorAppbar,
     required this.azkarNotificationCubit,
   });
-  final Color colorAppbar;
   final AzkarNotificationCubit azkarNotificationCubit;
 
   @override
@@ -24,7 +22,7 @@ class CustomNotificationSettings extends StatelessWidget {
         Container(
           height: 80.h,
           width: double.infinity,
-          color: colorAppbar,
+          color: Colors.transparent,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

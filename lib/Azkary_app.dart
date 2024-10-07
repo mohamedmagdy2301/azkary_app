@@ -1,72 +1,126 @@
+import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
+import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_screen.dart';
-import 'package:azkary_app/features/home/presentation/veiw/screens/home_screen.dart';
+import 'package:azkary_app/features/home/presentation/view/screens/home_screen.dart';
 import 'package:azkary_app/features/sabha/presentation/veiw/screens/sabha_screen.dart';
 import 'package:azkary_app/features/settings/presentation/veiw/screens/settings_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// fake commit
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
-class NavBarMainApp extends StatefulWidget {
-  const NavBarMainApp({
-    super.key,
-  });
+class MainScaffold extends StatefulWidget {
+  const MainScaffold({super.key});
 
   @override
-  State<NavBarMainApp> createState() => _NavBarMainAppState();
+  _MainScaffoldState createState() => _MainScaffoldState();
 }
 
-class _NavBarMainAppState extends State<NavBarMainApp> {
-  int _selectedIndex = 0;
+class _MainScaffoldState extends State<MainScaffold> {
+  late PersistentTabController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PersistentTabController(initialIndex: 0);
+  }
+
+  List<Widget> _buildScreens() {
+    return [
+      const HomeScreen(),
+      const AzkarScreen(),
+      const SabhaScreen(),
+      const SettingsScreen(),
+    ];
+  }
+
+  List<PersistentBottomNavBarItem> _navBarsItems() {
+    final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
+
+    return [
+      PersistentBottomNavBarItem(
+        icon: Image.asset(
+          'assets/images/crescent2.png',
+          height: 30,
+          width: 30,
+        ),
+        inactiveIcon: Image.asset(
+          'assets/images/crescent.png',
+          height: 30,
+          width: 30,
+        ),
+        title: (" "),
+        activeColorPrimary: ColorsAppLight.primaryColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Image.asset(
+          'assets/images/praying2.png',
+          height: 35,
+          width: 35,
+        ),
+        inactiveIcon: Image.asset(
+          'assets/images/praying.png',
+          height: 35,
+          width: 35,
+        ),
+        title: (" "),
+        activeColorPrimary: ColorsAppLight.primaryColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Image.asset(
+          "assets/images/prayer-beads.png",
+          height: 35,
+          width: 35,
+        ),
+        inactiveIcon: Image.asset(
+          'assets/images/arabic2.png',
+          height: 35,
+          width: 35,
+        ),
+        title: (" "),
+        activeColorPrimary: ColorsAppLight.primaryColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Image.asset(
+          'assets/images/setting-bulb2.png',
+          height: 30,
+          width: 30,
+        ),
+        inactiveIcon: Image.asset(
+          'assets/images/setting-bulb.png',
+          height: 30,
+          width: 30,
+        ),
+        title: (" "),
+        activeColorPrimary: ColorsAppLight.primaryColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: bodyScreens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: bottomNavigationBarItem,
-        currentIndex: _selectedIndex,
-        onTap: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-      ),
+    final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
+
+    return PersistentTabView(
+      context,
+      controller: _controller,
+      screens: _buildScreens(),
+      items: _navBarsItems(),
+      navBarHeight: 70.h,
+      backgroundColor:
+          isLightTheme ? Colors.white : ColorsAppDark.backgroundColor,
+      handleAndroidBackButtonPress: true,
+      resizeToAvoidBottomInset: true,
+      stateManagement: true,
+      hideNavigationBarWhenKeyboardAppears: true,
+      navBarStyle: NavBarStyle.style13,
+      onWillPop: (context) async {
+        return true;
+      },
     );
   }
-
-  List<Widget> bodyScreens = [
-    const HomeScreen(),
-    const SabhaScreen(),
-    const AzkarScreen(),
-    const SettingsScreen(),
-  ];
-
-  List<BottomNavigationBarItem> bottomNavigationBarItem =
-      <BottomNavigationBarItem>[
-    BottomNavigationBarItem(
-      icon: Image.asset("assets/images/praying.png", width: 30),
-      activeIcon: Image.asset("assets/images/praying.png", width: 35),
-      label: ' ',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset("assets/images/arabic.png", width: 30),
-      activeIcon: Image.asset("assets/images/arabic.png", width: 35),
-      label: ' ',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.book),
-      activeIcon: Icon(CupertinoIcons.book_fill),
-      label: ' ',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.gear_alt),
-      activeIcon: Icon(CupertinoIcons.gear_alt_fill),
-      label: ' ',
-    ),
-    // const BottomNavigationBarItem(
-    //   icon: Icon(CupertinoIcons.bell),
-    //   activeIcon: Icon(CupertinoIcons.bell_fill),
-    //   label: ' ',
-    // ),
-  ];
 }
