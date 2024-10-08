@@ -10,6 +10,7 @@ import 'package:azkary_app/features/home/presentation/view_model/prayer_times_cu
 import 'package:azkary_app/features/sabha/presentation/veiw/screens/sabha_screen.dart';
 import 'package:azkary_app/features/settings/presentation/veiw/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,6 +21,10 @@ void main() async {
     ScreenUtil.ensureScreenSize(),
     AwesomeNotificationManager.initialize(),
     SharedPreferencesManager.sharedPreferencesInitialize(),
+  ]);
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
   ]);
 
   final themeCubit = ThemeCubit();
