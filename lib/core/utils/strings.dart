@@ -28,7 +28,7 @@ class StringsAppAR {
   static const String alEsha = "العشاء";
   static const String alShoroq = "الشروق";
 
-  static const String daiaToday = "دعاء اليوم";
+  static const String daiaToday = "أدعية متنوعة";
 
   static const String sabah = "سبح";
 

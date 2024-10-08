@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:azkary_app/features/home/data/prayer_time_repo_impl.dart';
+import 'package:azkary_app/features/home/data/repo/prayer_time_repo_impl.dart';
 
 String findPrayerTimes() {
   DateTime now = DateTime.now();

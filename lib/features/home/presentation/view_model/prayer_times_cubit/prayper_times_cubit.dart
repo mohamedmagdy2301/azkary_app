@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:azkary_app/features/home/data/prayer_time_repo_impl.dart';
+import 'package:azkary_app/features/home/data/repo/prayer_time_repo_impl.dart';
 import 'package:azkary_app/features/home/domain/prayer_times_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

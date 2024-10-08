@@ -1,14 +1,43 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/core/utils/strings.dart';
+import 'package:azkary_app/features/azkar/data/azkar_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TodayDoaaCard extends StatelessWidget {
+class TodayDoaaCard extends StatefulWidget {
   const TodayDoaaCard({
     super.key,
   });
+
+  @override
+  State<TodayDoaaCard> createState() => _TodayDoaaCardState();
+}
+
+class _TodayDoaaCardState extends State<TodayDoaaCard> {
+  List<Map<String, String>> azkarList = azkarData["أدعية الأنبياء"]!;
+
+  // Function to display random Zikr
+  displayRandomZikr() {
+    Random random = Random();
+    int randomIndex = random.nextInt(azkarList.length);
+    String randomAzkarContent = azkarList[randomIndex]["content"]!;
+    return randomAzkarContent.split(".").first;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(
+      const Duration(hours: 1),
+      (Timer t) => displayRandomZikr(),
+    );
+    displayRandomZikr();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +75,9 @@ class TodayDoaaCard extends StatelessWidget {
                 ],
               ),
               Text(
-                "بِاسْمِكَ رَبِّـي وَضَعْـتُ جَنْـبي ، وَبِكَ أَرْفَعُـه، فَإِن أَمْسَـكْتَ نَفْسـي فارْحَـمْها ، وَإِنْ أَرْسَلْتَـها فاحْفَظْـها بِمـا تَحْفَـظُ بِه عِبـادَكَ الصّـالِحـين.",
+                displayRandomZikr(),
                 style: TextStyle(
-                    fontSize: 15.sp,
+                    fontSize: 17.sp,
                     fontWeight: FontWeight.w500,
                     height: 1.5,
                     color: isLightTheme ? Colors.black : Colors.white,
