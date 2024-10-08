@@ -1,6 +1,8 @@
-import 'dart:ui';
-
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:azkary_app/features/azkar/data/azkar_screen_body_item_model_data.dart';
+import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_details_screen.dart';
+import 'package:azkary_app/main_development.dart';
+import 'package:flutter/material.dart';
 
 class AwesomeNotificationManager {
   static Future<void> initialize() async {
@@ -39,6 +41,7 @@ class AwesomeNotificationManager {
       notificationLayout: NotificationLayout.BigText,
       //locked: true,
       wakeUpScreen: true,
+
       autoDismissible: true,
       fullScreenIntent: true,
       displayOnForeground: true,
@@ -53,10 +56,8 @@ class AwesomeNotificationManager {
       hour: selectedHour,
       minute: selectedMinute,
       second: 0,
-      repeats: true, // Set the schedule to repeat daily
-      // preciseAlarm: true,
+      repeats: true,
       allowWhileIdle: true,
-
       timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier(),
     );
 
@@ -64,7 +65,36 @@ class AwesomeNotificationManager {
       content: notificationContent,
       schedule: schedule,
     );
+  }
 
-    // await AwesomeNotifications().cancelAll();
+  static void onActionReceived() {
+    AwesomeNotifications()
+        .setListeners(onActionReceivedMethod: onActionReceivedMethod);
+  }
+
+  @pragma('vm:entry-point')
+  static Future<void> onActionReceivedMethod(
+      ReceivedAction receivedAction) async {
+    if (receivedAction.actionType == ActionType.SilentAction ||
+        receivedAction.actionType == ActionType.SilentBackgroundAction) {
+      // For background actions, you must hold the execution until the end
+      print(
+          'Message sent via notification input: "${receivedAction.buttonKeyInput}"');
+    } else {
+      return onActionReceivedImplementationMethod(receivedAction);
+    }
+  }
+
+  static Future<void> onActionReceivedImplementationMethod(
+      ReceivedAction receivedAction) async {
+    MyApp.navigatorKey.currentState?.pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) => AzkarDetailsScreen(
+          azkarScreenBodyItemModel:
+              azkarScreenBodyItemModel[receivedAction.id!],
+        ),
+      ),
+      (route) => route.isFirst,
+    );
   }
 }

@@ -6,14 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
-class AzkarScreenBody extends StatefulWidget {
+class AzkarScreenBody extends StatelessWidget {
   const AzkarScreenBody({super.key});
 
-  @override
-  State<AzkarScreenBody> createState() => _AzkarScreenBodyState();
-}
-
-class _AzkarScreenBodyState extends State<AzkarScreenBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(

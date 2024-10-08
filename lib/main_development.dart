@@ -35,11 +35,18 @@ void main() async {
 }
 
 // fake commit
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final ThemeCubit themeCubit;
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   const MyApp({super.key, required this.themeCubit});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -48,7 +55,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, child) {
         return BlocProvider(
-          create: (_) => themeCubit,
+          create: (_) => widget.themeCubit,
           child: BlocBuilder<ThemeCubit, ThemeMode>(
             builder: (context, themeMode) {
               return BlocProvider(
@@ -58,6 +65,7 @@ class MyApp extends StatelessWidget {
                   theme: lightTheme,
                   darkTheme: darkTheme,
                   themeMode: themeMode,
+                  navigatorKey: MyApp.navigatorKey,
                   routes: routes,
                   localizationsDelegates: const [
                     GlobalCupertinoLocalizations.delegate,
