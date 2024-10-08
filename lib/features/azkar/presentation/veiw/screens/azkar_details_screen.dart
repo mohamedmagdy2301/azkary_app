@@ -11,7 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AzkarDetailsScreen extends StatefulWidget {
-  const AzkarDetailsScreen({super.key, this.selectedTime});
+  const AzkarDetailsScreen(
+      {super.key, this.selectedTime, required this.azkarScreenBodyItemModel});
+  final AzkarScreenBodyItemModel azkarScreenBodyItemModel;
 
   static const String routeName = '/azkarDetailsScreen';
   final TimeOfDay? selectedTime;
@@ -25,9 +27,7 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final azkarScreenBodyItemModel =
-        ModalRoute.of(context)?.settings.arguments as AzkarScreenBodyItemModel;
-    var dataList = azkarData[azkarScreenBodyItemModel.title];
+    var dataList = azkarData[widget.azkarScreenBodyItemModel.title];
 
     final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
 
@@ -37,7 +37,8 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
           create: (context) => AzkarDetailsCubit(dataList),
         ),
         BlocProvider(
-          create: (context) => AzkarNotificationCubit(azkarScreenBodyItemModel),
+          create: (context) =>
+              AzkarNotificationCubit(widget.azkarScreenBodyItemModel),
         ),
       ],
       child: BlocBuilder<AzkarNotificationCubit, AzkarNotificationState>(
@@ -46,7 +47,7 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
 
           return Scaffold(
             appBar: AppBar(
-              title: Text(azkarScreenBodyItemModel.title),
+              title: Text(widget.azkarScreenBodyItemModel.title),
               centerTitle: true,
               elevation: 0,
               backgroundColor: isLightTheme ? colorAppbar : Colors.transparent,
@@ -69,9 +70,6 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
                     if (azkarNotificationCubit.isViewNotification)
                       CustomNotificationSettings(
                         azkarNotificationCubit: azkarNotificationCubit,
-                        colorAppbar: !isLightTheme
-                            ? Colors.transparent
-                            : const Color.fromARGB(255, 228, 228, 228),
                       ),
                     Expanded(
                       child: ListView.builder(

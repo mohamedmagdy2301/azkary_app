@@ -4,6 +4,7 @@ import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_detail
 import 'package:azkary_app/features/azkar/presentation/veiw/widgets/azkar_screen_body_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class AzkarScreenBody extends StatefulWidget {
   const AzkarScreenBody({super.key});
@@ -25,20 +26,20 @@ class _AzkarScreenBodyState extends State<AzkarScreenBody> {
             AzkarScreenBodyItem(
               azkarScreenBodyItemModel: azkarScreenBodyItemModel[0],
               onTap: () {
-                Navigator.pushNamed(
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  AzkarDetailsScreen.routeName,
-                  arguments: azkarScreenBodyItemModel[0],
+                  screen: AzkarDetailsScreen(
+                      azkarScreenBodyItemModel: azkarScreenBodyItemModel[0]),
                 );
               },
             ),
             AzkarScreenBodyItem(
               azkarScreenBodyItemModel: azkarScreenBodyItemModel[1],
               onTap: () {
-                Navigator.pushNamed(
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  AzkarDetailsScreen.routeName,
-                  arguments: azkarScreenBodyItemModel[1],
+                  screen: AzkarDetailsScreen(
+                      azkarScreenBodyItemModel: azkarScreenBodyItemModel[1]),
                 );
               },
             ),
@@ -52,60 +53,60 @@ class _AzkarScreenBodyState extends State<AzkarScreenBody> {
             AzkarScreenBodyItem(
               azkarScreenBodyItemModel: azkarScreenBodyItemModel[2],
               onTap: () {
-                Navigator.pushNamed(
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  AzkarDetailsScreen.routeName,
-                  arguments: azkarScreenBodyItemModel[2],
+                  screen: AzkarDetailsScreen(
+                      azkarScreenBodyItemModel: azkarScreenBodyItemModel[2]),
                 );
               },
             ),
             AzkarScreenBodyItem(
               azkarScreenBodyItemModel: azkarScreenBodyItemModel[3],
               onTap: () {
-                Navigator.pushNamed(
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  AzkarDetailsScreen.routeName,
-                  arguments: azkarScreenBodyItemModel[3],
+                  screen: AzkarDetailsScreen(
+                      azkarScreenBodyItemModel: azkarScreenBodyItemModel[3]),
                 );
               },
             ),
             AzkarScreenBodyItem(
               azkarScreenBodyItemModel: azkarScreenBodyItemModel[4],
               onTap: () {
-                Navigator.pushNamed(
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  AzkarDetailsScreen.routeName,
-                  arguments: azkarScreenBodyItemModel[4],
+                  screen: AzkarDetailsScreen(
+                      azkarScreenBodyItemModel: azkarScreenBodyItemModel[4]),
                 );
               },
             ),
             AzkarScreenBodyItem(
               azkarScreenBodyItemModel: azkarScreenBodyItemModel[5],
               onTap: () {
-                Navigator.pushNamed(
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  AzkarDetailsScreen.routeName,
-                  arguments: azkarScreenBodyItemModel[5],
+                  screen: AzkarDetailsScreen(
+                      azkarScreenBodyItemModel: azkarScreenBodyItemModel[5]),
                 );
               },
             ),
             AzkarScreenBodyItem(
               azkarScreenBodyItemModel: azkarScreenBodyItemModel[6],
               onTap: () {
-                Navigator.pushNamed(
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  AzkarDetailsScreen.routeName,
-                  arguments: azkarScreenBodyItemModel[6],
+                  screen: AzkarDetailsScreen(
+                      azkarScreenBodyItemModel: azkarScreenBodyItemModel[6]),
                 );
               },
             ),
             AzkarScreenBodyItem(
               azkarScreenBodyItemModel: azkarScreenBodyItemModel[7],
               onTap: () {
-                Navigator.pushNamed(
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  AzkarDetailsScreen.routeName,
-                  arguments: azkarScreenBodyItemModel[7],
+                  screen: AzkarDetailsScreen(
+                      azkarScreenBodyItemModel: azkarScreenBodyItemModel[7]),
                 );
               },
             ),

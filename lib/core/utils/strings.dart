@@ -20,7 +20,7 @@ class StringsAppAR {
   static const String adaiaQarunia = "أدعية قرآنية";
   static const String adaiaAlnabiya = "أدعية الأنبياء";
 
-  static const String mawaeedSabha = "مواعيد الصلاة";
+  static const String prayerTimes = "مواعيد الصلاة";
   static const String alFajr = "الفجر";
   static const String alZaher = "الظهر";
   static const String alAsr = "العصر";

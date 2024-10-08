@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
-  static const routeName = '/home';
+  static const routeName = '/settings';
   @override
   Widget build(BuildContext context) {
     var themeCubit = context.read<ThemeCubit>();
