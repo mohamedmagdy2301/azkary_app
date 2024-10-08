@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:azkary_app/core/functions/get_current_prayer_arbic.dart';
 import 'package:azkary_app/core/functions/get_status_prayer_time.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/features/home/domain/prayer_times_entity.dart';
@@ -21,6 +22,8 @@ class _NextPrayerCardState extends State<NextPrayerCard> {
   Timer? timer;
   String remainingTime = '';
 
+  String? nextPrayerNames;
+
   Map<String, String> prayerTimings = {};
 
   @override
@@ -36,6 +39,7 @@ class _NextPrayerCardState extends State<NextPrayerCard> {
   void updatePrayerTime() {
     setState(() {
       remainingTime = findPrayerTimes();
+      nextPrayerNames = getCurrentPrayerByArabic();
     });
   }
 
@@ -47,8 +51,6 @@ class _NextPrayerCardState extends State<NextPrayerCard> {
 
   @override
   Widget build(BuildContext context) {
-    String nextPrayer = widget.prayerTimes[0].nextPrayer;
-
     return Container(
       height: 130.h,
       width: double.infinity,
@@ -108,7 +110,7 @@ class _NextPrayerCardState extends State<NextPrayerCard> {
                     ),
                   ),
                   Text(
-                    'صلاة $nextPrayer',
+                    'صلاة $nextPrayerNames',
                     style: TextStyle(
                       fontSize: 25.sp,
                       color: Colors.white,
