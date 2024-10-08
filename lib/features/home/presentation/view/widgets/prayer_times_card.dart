@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:azkary_app/core/functions/get_status_prayer_name.dart';
 import 'package:azkary_app/core/theming/cubit_cahnge_themeing.dart';
 import 'package:azkary_app/core/utils/colors.dart';
@@ -17,7 +19,28 @@ class PrayerTimesCard extends StatefulWidget {
 }
 
 class _PrayerTimesCardState extends State<PrayerTimesCard> {
-  final List nextPrayerTime = findPrayerNames()['nextPrayer']!;
+  List nextPrayerTime = findPrayerNames()['nextPrayer']!;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        nextPrayerTime = findPrayerNames()['nextPrayer']!;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   Color updatePrayerTime(prayerName, isLightTheme) {
     for (var prayer in nextPrayerTime) {
