@@ -116,7 +116,7 @@ class _PrayerTimesCardState extends State<PrayerTimesCard> {
                   SizedBox(height: 8.h),
                   PrayerTimeRow(
                     title: StringsAppAR.alFajr,
-                    time: " $fajr ص",
+                    time: fajr,
                     colorText: updatePrayerTime('Fajr', isLightTheme),
                   ),
                   const Divider(
@@ -125,7 +125,7 @@ class _PrayerTimesCardState extends State<PrayerTimesCard> {
                   ),
                   PrayerTimeRow(
                     title: StringsAppAR.alShoroq,
-                    time: "$sunrise ص",
+                    time: sunrise,
                     colorText: updatePrayerTime('Sunrise', isLightTheme),
                   ),
                   const Divider(
@@ -134,7 +134,7 @@ class _PrayerTimesCardState extends State<PrayerTimesCard> {
                   ),
                   PrayerTimeRow(
                     title: StringsAppAR.alZaher,
-                    time: " $dhuhr ص",
+                    time: dhuhr,
                     colorText: updatePrayerTime('Dhuhr', isLightTheme),
                   ),
                   const Divider(
@@ -143,7 +143,7 @@ class _PrayerTimesCardState extends State<PrayerTimesCard> {
                   ),
                   PrayerTimeRow(
                     title: StringsAppAR.alAsr,
-                    time: "$asr  م ",
+                    time: asr,
                     colorText: updatePrayerTime('Asr', isLightTheme),
                   ),
                   const Divider(
@@ -152,7 +152,7 @@ class _PrayerTimesCardState extends State<PrayerTimesCard> {
                   ),
                   PrayerTimeRow(
                     title: StringsAppAR.alMagreb,
-                    time: " $maghrib  م ",
+                    time: maghrib,
                     colorText: updatePrayerTime('Maghrib', isLightTheme),
                   ),
                   const Divider(
@@ -161,7 +161,7 @@ class _PrayerTimesCardState extends State<PrayerTimesCard> {
                   ),
                   PrayerTimeRow(
                     title: StringsAppAR.alEsha,
-                    time: " $isha  م ",
+                    time: isha,
                     colorText: updatePrayerTime('Isha', isLightTheme),
                   ),
                 ],

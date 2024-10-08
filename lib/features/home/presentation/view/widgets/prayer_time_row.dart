@@ -1,3 +1,4 @@
+import 'package:azkary_app/core/functions/convert_to_12_hour.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,15 +23,17 @@ class PrayerTimeRow extends StatelessWidget {
             title,
             style: TextStyle(
               fontSize: 18.sp,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
               color: colorText,
             ),
           ),
           Text(
-            time,
+            convertTo12HourFormat(time)
+                .replaceAll("AM", "ص")
+                .replaceAll("PM", " م  "),
             style: TextStyle(
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w600,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w500,
               color: colorText,
             ),
           ),
