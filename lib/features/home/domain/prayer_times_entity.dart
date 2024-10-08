@@ -7,9 +7,6 @@ class PrayerTimesEntity {
   final String monthHijri;
   final String yearHijri;
 
-  // final String nextPrayerTime;
-  final String nextPrayer;
-
   final String fajrTime;
   final String sunriseTime;
   final String dhuhrTime;
@@ -24,8 +21,6 @@ class PrayerTimesEntity {
     required this.dayWeekHijri,
     required this.monthHijri,
     required this.yearHijri,
-    // required this.nextPrayerTime,
-    required this.nextPrayer,
     required this.fajrTime,
     required this.sunriseTime,
     required this.dhuhrTime,

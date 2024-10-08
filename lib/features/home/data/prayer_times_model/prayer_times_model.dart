@@ -1,5 +1,4 @@
 import 'package:azkary_app/core/functions/convert_en_to_ar_months.dart';
-import 'package:azkary_app/core/functions/get_current_prayer_arbic.dart';
 import 'package:azkary_app/features/home/domain/prayer_times_entity.dart';
 
 import 'date.dart';
@@ -16,10 +15,9 @@ class PrayerTimesModel extends PrayerTimesEntity {
           dayWeek: date?.hijri?.weekday?.ar ?? "none",
           dayMonth: date?.readable?.split(" ")[0] ?? "none",
           month: monthTranslations[date?.readable?.split(" ")[1]] ?? "none",
-          dayWeekHijri: date?.hijri?.weekday?.ar ?? "none",
+          dayWeekHijri: date?.hijri?.day ?? "none",
           monthHijri: date?.hijri?.month?.ar ?? "none",
           yearHijri: date?.hijri?.year ?? "none",
-          nextPrayer: getCurrentPrayerByArabic(),
           fajrTime: timings?.fajr ?? "none",
           sunriseTime: timings?.sunrise ?? "none",
           dhuhrTime: timings?.dhuhr ?? "none",
