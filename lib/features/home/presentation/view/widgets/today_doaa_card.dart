@@ -43,48 +43,52 @@ class _TodayDoaaCardState extends State<TodayDoaaCard> {
   Widget build(BuildContext context) {
     final isLightTheme = context.watch<ThemeCubit>().state == ThemeMode.light;
 
-    return SizedBox(
-      height: 130.h,
-      child: Card(
-        elevation: 0,
-        color: isLightTheme
-            ? Colors.grey.shade100
-            : const Color.fromARGB(255, 31, 31, 31),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.bookmark,
+    return Card(
+      elevation: 2,
+      color: isLightTheme
+          ? Colors.grey.shade100
+          : const Color.fromARGB(255, 31, 31, 31),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 12.w,
+          vertical: 12.h,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.bookmark,
+                  color: ColorsAppLight.primaryColor,
+                  size: 20.sp,
+                ),
+                SizedBox(width: 5.w),
+                Text(
+                  StringsAppAR.daiaToday,
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w600,
                     color: ColorsAppLight.primaryColor,
-                    size: 20.sp,
                   ),
-                  SizedBox(width: 5.w),
-                  Text(
-                    StringsAppAR.daiaToday,
-                    style: TextStyle(
-                      fontSize: 15.sp,
-                      fontWeight: FontWeight.w600,
-                      color: ColorsAppLight.primaryColor,
-                    ),
-                  ),
-                ],
+                ),
+              ],
+            ),
+            SizedBox(height: 15.h),
+            Text(
+              displayRandomZikr(),
+              style: TextStyle(
+                fontSize: 17.sp,
+                fontWeight: FontWeight.w500,
+                height: 2.h,
+                wordSpacing: 1.w,
+                color: isLightTheme ? Colors.black : Colors.white,
+                fontFamily: "Amiri",
               ),
-              Text(
-                displayRandomZikr(),
-                style: TextStyle(
-                    fontSize: 17.sp,
-                    fontWeight: FontWeight.w500,
-                    height: 1.5,
-                    color: isLightTheme ? Colors.black : Colors.white,
-                    fontFamily: "Amiri"),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
