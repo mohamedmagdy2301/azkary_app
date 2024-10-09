@@ -61,7 +61,7 @@ android {
         development {
             dimension "default"
             
-            resValue "string", "app_name","Azkary"
+            resValue "string", "app_name","فَاذْكُرُونِي أَذْكُرْكُمْ"
         }
     }
     buildTypes {
