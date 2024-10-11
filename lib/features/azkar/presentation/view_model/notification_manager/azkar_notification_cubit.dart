@@ -44,12 +44,15 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
       // Updating the time
       timeOfDay0 = selectedTime!;
       await saveTimeNotification(timeOfDay0);
+      AwesomeNotificationManager.initialize(
+          channelKey: 'azkar_channel_${azkarScreenBodyItemModel.title}');
 
       // Canceling the previous notification
       await AwesomeNotifications().cancel(azkarScreenBodyItemModel.id);
 
       // Scheduling the notification
       AwesomeNotificationManager.scheduleNotification(
+        channalKey: 'azkar_channel_${azkarScreenBodyItemModel.title}',
         id: azkarScreenBodyItemModel.id,
         title: azkarScreenBodyItemModel.title,
         body: "موعد ${azkarScreenBodyItemModel.title}",

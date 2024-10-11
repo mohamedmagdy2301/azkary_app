@@ -19,7 +19,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.wait([
     ScreenUtil.ensureScreenSize(),
-    AwesomeNotificationManager.initialize(),
     SharedPreferencesManager.sharedPreferencesInitialize(),
   ]);
   SystemChrome.setPreferredOrientations([

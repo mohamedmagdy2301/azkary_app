@@ -5,7 +5,7 @@ import 'package:azkary_app/main_development.dart';
 import 'package:flutter/material.dart';
 
 class AwesomeNotificationManager {
-  static Future<void> initialize() async {
+  static Future<void> initialize({required String channelKey}) async {
     await AwesomeNotifications().initialize(
       'resource://drawable/quran',
       [
@@ -29,12 +29,13 @@ class AwesomeNotificationManager {
     required String body,
     required int selectedHour,
     required int selectedMinute,
+    required String channalKey,
   }) async {
     final now = DateTime.now();
 
     final notificationContent = NotificationContent(
       id: id,
-      channelKey: 'azkar_schedule_app_channel',
+      channelKey: channalKey,
       title: title,
       body: body,
       category: NotificationCategory.Social,
