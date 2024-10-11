@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:azkary_app/core/functions/get_current_prayer_arbic.dart';
 import 'package:azkary_app/core/functions/get_status_prayer_time.dart';
+import 'package:azkary_app/core/notification_helper/awesome_notification_manager.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/features/home/domain/prayer_times_entity.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,10 @@ class NextPrayerCard extends StatefulWidget {
 }
 
 class _NextPrayerCardState extends State<NextPrayerCard> {
-  Timer? timer;
-  String remainingTime = '';
-
-  String? nextPrayerNames;
-
-  Map<String, String> prayerTimings = {};
+  late Timer timer;
+  late String remainingTime;
+  late String nextPrayerNames;
+  late String nextPrayerId;
 
   @override
   void initState() {
@@ -39,13 +38,31 @@ class _NextPrayerCardState extends State<NextPrayerCard> {
   void updatePrayerTime() {
     setState(() {
       remainingTime = findPrayerTimes();
-      nextPrayerNames = getCurrentPrayerByArabic();
+      nextPrayerNames = getCurrentPrayerByArabic()[0];
+      nextPrayerId = getCurrentPrayerByArabic()[1];
+      createNotificaion(remainingTime, nextPrayerId, nextPrayerNames);
     });
+  }
+
+  createNotificaion(remainingTime, nextPrayerId, nextPrayerNames) {
+    if (remainingTime.isNotEmpty && remainingTime == '00:05:00') {
+      AwesomeNotificationManager.basicNotification(
+        id: int.parse(getCurrentPrayerByArabic()[1]),
+        title: nextPrayerNames,
+        body: "متبقي علي الصلاة $nextPrayerNames 5 دقائق",
+      );
+    } else if (remainingTime.isNotEmpty && remainingTime == '00:00:05') {
+      AwesomeNotificationManager.basicNotification(
+        id: int.parse(getCurrentPrayerByArabic()[1]),
+        title: nextPrayerNames,
+        body: "حان الان موعد اذان صلاة $nextPrayerNames",
+      );
+    }
   }
 
   @override
   void dispose() {
-    timer?.cancel();
+    timer.cancel();
     super.dispose();
   }
 

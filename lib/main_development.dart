@@ -19,6 +19,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.wait([
     ScreenUtil.ensureScreenSize(),
+    AwesomeNotificationManager.initialize(),
     SharedPreferencesManager.sharedPreferencesInitialize(),
   ]);
   SystemChrome.setPreferredOrientations([
@@ -86,6 +87,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Map<String, WidgetBuilder> get routes => {
+        // '/': (context) => const SplashScreen(),
         '/': (context) => const MainScaffold(),
         HomeScreen.routeName: (context) => const HomeScreen(),
         SettingsScreen.routeName: (context) => const SettingsScreen(),

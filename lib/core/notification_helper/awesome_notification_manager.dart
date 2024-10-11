@@ -5,14 +5,26 @@ import 'package:azkary_app/main_development.dart';
 import 'package:flutter/material.dart';
 
 class AwesomeNotificationManager {
-  static Future<void> initialize({required String channelKey}) async {
+  static Future<void> initialize() async {
     await AwesomeNotifications().initialize(
       'resource://drawable/quran',
+      languageCode: 'ar',
       [
         NotificationChannel(
-          channelKey: 'azkar_schedule_app_channel',
+          channelKey: "basic_channel",
           channelName: 'Basic notifications',
           channelDescription: 'Notification channel for basic tests',
+          defaultColor: const Color(0xFF9D50FF),
+          importance: NotificationImportance.Max,
+          enableLights: true,
+          enableVibration: true,
+          playSound: true,
+          soundSource: 'resource://raw/adan',
+        ),
+        NotificationChannel(
+          channelKey: "schedule_channel",
+          channelName: 'schedule notifications',
+          channelDescription: 'Notification channel for schedule tests',
           defaultColor: const Color(0xFF9D50FF),
           importance: NotificationImportance.High,
           enableLights: true,
@@ -29,20 +41,17 @@ class AwesomeNotificationManager {
     required String body,
     required int selectedHour,
     required int selectedMinute,
-    required String channalKey,
   }) async {
     final now = DateTime.now();
 
     final notificationContent = NotificationContent(
       id: id,
-      channelKey: channalKey,
+      channelKey: "schedule_channel",
       title: title,
       body: body,
       category: NotificationCategory.Social,
       notificationLayout: NotificationLayout.BigText,
-      //locked: true,
       wakeUpScreen: true,
-
       autoDismissible: true,
       fullScreenIntent: true,
       displayOnForeground: true,
@@ -68,6 +77,31 @@ class AwesomeNotificationManager {
     );
   }
 
+  static Future<void> basicNotification({
+    required int id,
+    required String title,
+    required String body,
+  }) async {
+    final notificationContent = NotificationContent(
+      id: id,
+      channelKey: "basic_channel",
+      title: title,
+      body: body,
+      category: NotificationCategory.Social,
+      notificationLayout: NotificationLayout.BigText,
+      wakeUpScreen: true,
+      autoDismissible: true,
+      fullScreenIntent: true,
+      displayOnForeground: true,
+      displayOnBackground: true,
+      // duration: const Duration(seconds: 10),
+    );
+
+    await AwesomeNotifications().createNotification(
+      content: notificationContent,
+    );
+  }
+
   static void onActionReceived() {
     AwesomeNotifications()
         .setListeners(onActionReceivedMethod: onActionReceivedMethod);
@@ -79,8 +113,6 @@ class AwesomeNotificationManager {
     if (receivedAction.actionType == ActionType.SilentAction ||
         receivedAction.actionType == ActionType.SilentBackgroundAction) {
       // For background actions, you must hold the execution until the end
-      print(
-          'Message sent via notification input: "${receivedAction.buttonKeyInput}"');
     } else {
       return onActionReceivedImplementationMethod(receivedAction);
     }
