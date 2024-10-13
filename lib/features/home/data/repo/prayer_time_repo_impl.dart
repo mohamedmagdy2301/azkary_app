@@ -5,9 +5,12 @@ import 'package:geolocator/geolocator.dart';
 
 class PrayerTimesRepository {
   Dio dio = Dio();
+
   static Map<String, String> timings = {};
   Future<List<PrayerTimesEntity>> fetchPrayerTimes(
       {required Position location}) async {
+    dio.interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
+
     const String apiUrl = 'https://api.aladhan.com/v1/timings/';
     String latitude = location.latitude.toString();
     String longitude = location.longitude.toString();
