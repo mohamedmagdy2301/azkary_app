@@ -9,15 +9,17 @@ class BodyHomeScreen extends StatelessWidget {
   const BodyHomeScreen({
     super.key,
     required this.prayerTimes,
+    required this.locationName,
   });
   final List<PrayerTimesEntity> prayerTimes;
+  final String locationName;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          NextPrayerCard(prayerTimes: prayerTimes),
+          NextPrayerCard(prayerTimes: prayerTimes, locationName: locationName),
           SizedBox(height: 15.h),
           PrayerTimesCard(prayerTimes: prayerTimes),
           SizedBox(height: 15.h),

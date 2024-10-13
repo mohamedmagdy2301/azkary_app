@@ -28,7 +28,7 @@ class StringsAppAR {
   static const String alEsha = "العشاء";
   static const String alShoroq = "الشروق";
 
-  static const String daiaToday = "دعاء اليوم";
+  static const String daiaToday = "أدعية متنوعة";
 
   static const String sabah = "سبح";
 
@@ -37,6 +37,11 @@ class StringsAppAR {
 
   static const String language = "اللغة";
   static const String aboutApp = "عن التطبيق";
+
+  static const String aboutAppContent =
+      "تطبيق أذكار هو تطبيق إسلامي مخصص لتذكير المستخدمين بالأذكار اليومية، الأدعية، وأوقات الصلاة. "
+      "يتميز التطبيق بتصميم بسيط وسهل الاستخدام مع تنبيهات مخصصة لتذكيرك بقراءة الأذكار في أوقاتها المحددة. "
+      "يمكنك أيضًا تصفح قائمة الأذكار المختلفة، الأدعية من القرآن الكريم والسنة النبوية.";
 }
 
 // class StringsAppEN {

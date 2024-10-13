@@ -8,7 +8,8 @@ final class PrayerTimesLoading extends PrayerTimesState {}
 
 final class PrayerTimesLoaded extends PrayerTimesState {
   final List<PrayerTimesEntity> prayerTimes;
-  PrayerTimesLoaded(this.prayerTimes);
+  final String locationName;
+  PrayerTimesLoaded(this.prayerTimes, this.locationName);
 }
 
 final class PrayerTimesError extends PrayerTimesState {

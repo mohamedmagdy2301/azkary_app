@@ -1,14 +1,14 @@
 import 'get_status_prayer_name.dart';
 
-String getCurrentPrayerByArabic() {
+List getCurrentPrayerByArabic() {
   String nextPrayerName = 'no prayer';
-  Map<String, String> prayerNamesArabic = {
-    "Fajr": "الفجر",
-    "Sunrise": "الشروق",
-    "Dhuhr": "الظهر",
-    "Asr": "العصر",
-    "Maghrib": "المغرب",
-    "Isha": "العشاء",
+  Map<String, List> prayerNamesArabic = {
+    "Fajr": ["الفجر", "11"],
+    "Sunrise": ["الشروق", "12"],
+    "Dhuhr": ["الظهر", "13"],
+    "Asr": ["العصر", "14"],
+    "Maghrib": ["المغرب", "15"],
+    "Isha": ["العشاء", "16"],
   };
 
   nextPrayerName = findPrayerNames()["nextPrayer"]![0];

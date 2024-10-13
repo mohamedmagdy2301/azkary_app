@@ -9,23 +9,17 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    String dayWeek = prayerTimes[0].dayWeek;
-    String dayMonth = prayerTimes[0].dayMonth;
-    String month = prayerTimes[0].month;
-    String dayHijri = prayerTimes[0].dayWeekHijri;
-    String monthHijri = prayerTimes[0].monthHijri;
-    String yearHijri = prayerTimes[0].yearHijri;
-
+    PrayerTimesEntity time = prayerTimes[0];
     return AppBar(
       elevation: 0,
-      toolbarHeight: 70.h,
+      toolbarHeight: 85.h,
       forceMaterialTransparency: true,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10.h),
           Text(
-            '$dayWeek $dayMonth,$month',
+            '${time.dayWeek} ${time.dayMonth},${time.month}',
             style: TextStyle(
               fontSize: 25.sp,
               fontWeight: FontWeight.w500,
@@ -33,7 +27,7 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
           ),
           SizedBox(height: 3.h),
           Text(
-            '$dayHijri $monthHijri $yearHijri',
+            ' ${time.dayWeekHijri}  ${time.monthHijri}  ${time.yearHijri}',
             style: TextStyle(
               fontSize: 15.sp,
               fontWeight: FontWeight.w400,
@@ -46,5 +40,5 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(70.h);
+  Size get preferredSize => Size.fromHeight(85.h);
 }

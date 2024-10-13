@@ -47,7 +47,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(360, 758.666),
@@ -87,6 +86,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Map<String, WidgetBuilder> get routes => {
+        // '/': (context) => const SplashScreen(),
         '/': (context) => const MainScaffold(),
         HomeScreen.routeName: (context) => const HomeScreen(),
         SettingsScreen.routeName: (context) => const SettingsScreen(),
