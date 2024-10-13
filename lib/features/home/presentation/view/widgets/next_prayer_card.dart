@@ -1,14 +1,12 @@
-import 'dart:async';
-
-import 'package:azkary_app/core/functions/get_current_prayer_arbic.dart';
-import 'package:azkary_app/core/functions/get_status_prayer_time.dart';
-import 'package:azkary_app/core/notification_helper/awesome_notification_manager.dart';
 import 'package:azkary_app/core/utils/colors.dart';
 import 'package:azkary_app/features/home/domain/prayer_times_entity.dart';
+import 'package:azkary_app/features/home/presentation/view_model/next_prayer/next_prayer_cubit.dart';
+import 'package:azkary_app/features/home/presentation/view_model/next_prayer/next_prayer_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class NextPrayerCard extends StatefulWidget {
+class NextPrayerCard extends StatelessWidget {
   const NextPrayerCard({
     super.key,
     required this.prayerTimes,
@@ -16,151 +14,107 @@ class NextPrayerCard extends StatefulWidget {
   final List<PrayerTimesEntity> prayerTimes;
 
   @override
-  State<NextPrayerCard> createState() => _NextPrayerCardState();
-}
-
-class _NextPrayerCardState extends State<NextPrayerCard> {
-  late Timer timer;
-  late String remainingTime;
-  late String nextPrayerNames;
-  late String nextPrayerId;
-
-  @override
-  void initState() {
-    super.initState();
-    timer = Timer.periodic(
-      const Duration(seconds: 1),
-      (Timer t) => updatePrayerTime(),
-    );
-    updatePrayerTime();
-  }
-
-  void updatePrayerTime() {
-    setState(() {
-      remainingTime = findPrayerTimes();
-      nextPrayerNames = getCurrentPrayerByArabic()[0];
-      nextPrayerId = getCurrentPrayerByArabic()[1];
-      createNotificaion(remainingTime, nextPrayerId, nextPrayerNames);
-    });
-  }
-
-  createNotificaion(remainingTime, nextPrayerId, nextPrayerNames) {
-    if (remainingTime.isNotEmpty && remainingTime == '00:05:00') {
-      AwesomeNotificationManager.basicNotification(
-        id: int.parse(getCurrentPrayerByArabic()[1]),
-        title: nextPrayerNames,
-        body: "متبقي علي الصلاة $nextPrayerNames 5 دقائق",
-      );
-    } else if (remainingTime.isNotEmpty && remainingTime == '00:00:05') {
-      AwesomeNotificationManager.basicNotification(
-        id: int.parse(getCurrentPrayerByArabic()[1]),
-        title: nextPrayerNames,
-        body: "حان الان موعد اذان صلاة $nextPrayerNames",
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    timer.cancel();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 130.h,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color.fromARGB(255, 193, 231, 98),
-            ColorsAppLight.primaryColor,
-            Color.fromARGB(255, 107, 131, 49),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          stops: [0.1, 0.7, 1],
-        ),
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      padding: EdgeInsets.symmetric(
-        horizontal: 15.w,
-        vertical: 18.h,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.location_on_outlined,
-                color: Colors.white,
-                size: 20.sp,
+    return BlocProvider(
+      create: (context) => NextPrayerCubit(prayerTimes: prayerTimes),
+      child: BlocBuilder<NextPrayerCubit, NextPrayerState>(
+        builder: (context, state) {
+          return Container(
+            height: 140.h,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 193, 231, 98),
+                  ColorsAppLight.primaryColor,
+                  Color.fromARGB(255, 107, 131, 49),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.1, 0.7, 1],
               ),
-              Text(
-                ' شبين الكوم, المنوفيه',
-                style: TextStyle(
-                  fontSize: 15.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            padding: EdgeInsets.symmetric(
+              horizontal: 15.w,
+              vertical: 18.h,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.location_on_outlined,
+                      color: Colors.white,
+                      size: 20.sp,
+                    ),
+                    Text(
+                      ' شبين الكوم, المنوفيه',
+                      style: TextStyle(
+                        fontSize: 15.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'متبقي علي',
-                    style: TextStyle(
-                      fontSize: 15.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'متبقي علي',
+                          style: TextStyle(
+                            fontSize: 15.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          'صلاة ${state.nextPrayerName}',
+                          style: TextStyle(
+                            fontSize: 25.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  Text(
-                    'صلاة $nextPrayerNames',
-                    style: TextStyle(
-                      fontSize: 25.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          state.remainingTime,
+                          style: TextStyle(
+                            fontSize: 26.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        SizedBox(width: 5.w),
+                        Text(
+                          'ساعة',
+                          style: TextStyle(
+                            fontSize: 15.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    remainingTime,
-                    style: TextStyle(
-                      fontSize: 26.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                  SizedBox(width: 5.w),
-                  Text(
-                    'ساعة',
-                    style: TextStyle(
-                      fontSize: 15.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

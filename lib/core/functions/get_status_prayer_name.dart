@@ -1,7 +1,5 @@
 // Get the current time
 
-import 'dart:developer';
-
 import 'package:azkary_app/features/home/data/repo/prayer_time_repo_impl.dart';
 
 Map<String, List<String>> findPrayerNames() {
@@ -37,8 +35,8 @@ Map<String, List<String>> findPrayerNames() {
     nextPrayerNames = pastPrayerNames;
     pastPrayerNames = [];
   }
-  log("nextPrayer: $nextPrayerNames");
-  log("pastPrayer: $pastPrayerNames");
+  // log("nextPrayer: $nextPrayerNames");
+  // log("pastPrayer: $pastPrayerNames");
 
   stutasPrayerNames = {
     "pastPrayer": pastPrayerNames,

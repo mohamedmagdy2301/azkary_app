@@ -49,12 +49,13 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
       await AwesomeNotifications().cancel(azkarScreenBodyItemModel.id);
 
       // Scheduling the notification
-      AwesomeNotificationManager.scheduleNotification(
+      AwesomeNotificationManager.scheduleAzkarNotification(
         id: azkarScreenBodyItemModel.id,
         title: azkarScreenBodyItemModel.title,
         body: "موعد ${azkarScreenBodyItemModel.title}",
         selectedHour: timeOfDay0.hour,
         selectedMinute: timeOfDay0.minute,
+        isRepeating: true,
       );
       // Updating the UI
       isSwitchEnable = true;

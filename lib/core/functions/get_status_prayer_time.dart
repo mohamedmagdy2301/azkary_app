@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:azkary_app/features/home/data/repo/prayer_time_repo_impl.dart';
 
 String findPrayerTimes() {
@@ -62,6 +60,6 @@ String findPrayerTimes() {
       "${minutes.abs().toString().padLeft(2, '0')}:"
       "${seconds.abs().toString().padLeft(2, '0')}";
 
-  log("Next prayer in: $formattedTime");
+  // log("Next prayer in: $formattedTime");
   return formattedTime;
 }

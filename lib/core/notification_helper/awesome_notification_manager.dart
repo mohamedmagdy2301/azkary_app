@@ -1,6 +1,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:azkary_app/features/azkar/data/azkar_screen_body_item_model_data.dart';
 import 'package:azkary_app/features/azkar/presentation/veiw/screens/azkar_details_screen.dart';
+import 'package:azkary_app/features/home/presentation/view/screens/home_screen.dart';
 import 'package:azkary_app/main_development.dart';
 import 'package:flutter/material.dart';
 
@@ -8,66 +9,75 @@ class AwesomeNotificationManager {
   static Future<void> initialize() async {
     await AwesomeNotifications().initialize(
       'resource://drawable/quran',
-      languageCode: 'ar',
       [
         NotificationChannel(
-          channelKey: "basic_channel",
-          channelName: 'Basic notifications',
-          channelDescription: 'Notification channel for basic tests',
-          defaultColor: const Color(0xFF9D50FF),
+          channelKey: "basic_prayer_time_channel",
+          channelName: 'basic prayer time notifications',
+          channelDescription:
+              'Notification channel for basic prayer time tests',
           importance: NotificationImportance.Max,
+          channelShowBadge: true,
+          groupAlertBehavior: GroupAlertBehavior.Children,
           enableLights: true,
           enableVibration: true,
+          defaultPrivacy: NotificationPrivacy.Public,
           playSound: true,
           soundSource: 'resource://raw/adan',
         ),
         NotificationChannel(
-          channelKey: "schedule_channel",
-          channelName: 'schedule notifications',
-          channelDescription: 'Notification channel for schedule tests',
-          defaultColor: const Color(0xFF9D50FF),
-          importance: NotificationImportance.High,
+          channelKey: "reminder_prayer_time_channel",
+          channelName: 'reminder prayer time notifications',
+          channelDescription:
+              'Notification channel for reminder prayer time tests',
+          importance: NotificationImportance.Max,
+          groupAlertBehavior: GroupAlertBehavior.Children,
           enableLights: true,
           enableVibration: true,
+          defaultPrivacy: NotificationPrivacy.Public,
+          onlyAlertOnce: true,
+          playSound: true,
+          soundSource: 'resource://raw/reminder',
+        ),
+        NotificationChannel(
+          channelKey: "schedule_azkar_channel",
+          channelName: 'schedule notifications',
+          channelDescription: 'Notification channel for schedule tests',
+          importance: NotificationImportance.Max,
+          channelShowBadge: true,
+          groupAlertBehavior: GroupAlertBehavior.Children,
+          enableLights: true,
+          enableVibration: true,
+          defaultPrivacy: NotificationPrivacy.Public,
+          onlyAlertOnce: true,
+          playSound: true,
+          soundSource: 'resource://raw/sound_test',
         ),
       ],
+      debug: true,
     );
     AwesomeNotifications().requestPermissionToSendNotifications();
+    onActionReceived();
   }
 
-  static Future<void> scheduleNotification({
+  static Future<void> scheduleAzkarNotification({
     required int id,
     required String title,
     required String body,
     required int selectedHour,
     required int selectedMinute,
+    required bool isRepeating,
   }) async {
-    final now = DateTime.now();
-
     final notificationContent = NotificationContent(
       id: id,
-      channelKey: "schedule_channel",
+      channelKey: "schedule_azkar_channel",
       title: title,
       body: body,
-      category: NotificationCategory.Social,
-      notificationLayout: NotificationLayout.BigText,
-      wakeUpScreen: true,
-      autoDismissible: true,
-      fullScreenIntent: true,
-      displayOnForeground: true,
-      displayOnBackground: true,
-      duration: const Duration(seconds: 1),
     );
     final schedule = NotificationCalendar(
-      year: now.year,
-      month: now.month,
-      day: now.day,
-      weekday: now.weekday,
       hour: selectedHour,
       minute: selectedMinute,
       second: 0,
-      repeats: true,
-      allowWhileIdle: true,
+      repeats: isRepeating,
       timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier(),
     );
 
@@ -77,28 +87,55 @@ class AwesomeNotificationManager {
     );
   }
 
-  static Future<void> basicNotification({
+  static Future<void> reminderPrayerTimeNotification({
     required int id,
     required String title,
     required String body,
+    required DateTime selectedTime,
   }) async {
     final notificationContent = NotificationContent(
       id: id,
-      channelKey: "basic_channel",
+      channelKey: "reminder_prayer_time_channel",
       title: title,
       body: body,
-      category: NotificationCategory.Social,
-      notificationLayout: NotificationLayout.BigText,
-      wakeUpScreen: true,
-      autoDismissible: true,
-      fullScreenIntent: true,
-      displayOnForeground: true,
-      displayOnBackground: true,
-      // duration: const Duration(seconds: 10),
+    );
+    final schedule = NotificationCalendar(
+      hour: selectedTime.hour,
+      minute: selectedTime.minute - 5,
+      second: selectedTime.second,
+      repeats: true,
+      timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier(),
     );
 
     await AwesomeNotifications().createNotification(
       content: notificationContent,
+      schedule: schedule,
+    );
+  }
+
+  static Future<void> basicePrayerTimeNotification({
+    required int id,
+    required String title,
+    required String body,
+    required DateTime selectedTime,
+  }) async {
+    final notificationContent = NotificationContent(
+      id: id,
+      channelKey: "basic_prayer_time_channel",
+      title: title,
+      body: body,
+    );
+    final schedule = NotificationCalendar(
+      hour: selectedTime.hour,
+      minute: selectedTime.minute,
+      second: selectedTime.second,
+      repeats: true,
+      timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier(),
+    );
+
+    await AwesomeNotifications().createNotification(
+      content: notificationContent,
+      schedule: schedule,
     );
   }
 
@@ -112,7 +149,6 @@ class AwesomeNotificationManager {
       ReceivedAction receivedAction) async {
     if (receivedAction.actionType == ActionType.SilentAction ||
         receivedAction.actionType == ActionType.SilentBackgroundAction) {
-      // For background actions, you must hold the execution until the end
     } else {
       return onActionReceivedImplementationMethod(receivedAction);
     }
@@ -122,12 +158,17 @@ class AwesomeNotificationManager {
       ReceivedAction receivedAction) async {
     MyApp.navigatorKey.currentState?.pushAndRemoveUntil(
       MaterialPageRoute(
-        builder: (context) => AzkarDetailsScreen(
-          azkarScreenBodyItemModel:
-              azkarScreenBodyItemModel[receivedAction.id!],
-        ),
+        builder: (context) {
+          if (receivedAction.channelKey == "schedule_azkar_channel") {
+            return AzkarDetailsScreen(
+              azkarScreenBodyItemModel:
+                  azkarScreenBodyItemModel[receivedAction.id!],
+            );
+          }
+          return const HomeScreen();
+        },
       ),
-      (route) => route.isFirst,
+      (route) => false,
     );
   }
 }

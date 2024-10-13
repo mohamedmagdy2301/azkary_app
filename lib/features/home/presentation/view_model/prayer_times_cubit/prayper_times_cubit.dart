@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:azkary_app/features/home/data/repo/prayer_time_repo_impl.dart';
 import 'package:azkary_app/features/home/domain/prayer_times_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +17,6 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
       prayerTimes = await prayerTimesRepository.fetchPrayerTimes();
       emit(PrayerTimesLoaded(prayerTimes));
     } catch (e) {
-      log(e.toString());
       emit(PrayerTimesError(e.toString()));
     }
   }
