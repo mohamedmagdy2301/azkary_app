@@ -13,7 +13,10 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<PrayerTimesCubit, PrayerTimesState>(
       builder: (context, state) {
         if (state is PrayerTimesLoaded) {
-          return PrayerTimeLoadedUI(prayerTimes: state.prayerTimes);
+          return PrayerTimeLoadedUI(
+            prayerTimes: state.prayerTimes,
+            locationName: state.locationName,
+          );
         } else if (state is PrayerTimesError) {
           return Scaffold(
             body: Center(

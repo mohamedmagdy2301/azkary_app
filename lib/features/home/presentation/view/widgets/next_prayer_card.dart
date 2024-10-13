@@ -10,8 +10,10 @@ class NextPrayerCard extends StatelessWidget {
   const NextPrayerCard({
     super.key,
     required this.prayerTimes,
+    required this.locationName,
   });
   final List<PrayerTimesEntity> prayerTimes;
+  final String locationName;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class NextPrayerCard extends StatelessWidget {
                       size: 20.sp,
                     ),
                     Text(
-                      ' شبين الكوم, المنوفيه',
+                      locationName,
                       style: TextStyle(
                         fontSize: 15.sp,
                         color: Colors.white,

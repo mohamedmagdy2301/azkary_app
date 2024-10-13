@@ -10,8 +10,10 @@ class PrayerTimeLoadedUI extends StatelessWidget {
   const PrayerTimeLoadedUI({
     super.key,
     required this.prayerTimes,
+    required this.locationName,
   });
   final List<PrayerTimesEntity> prayerTimes;
+  final String locationName;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,8 @@ class PrayerTimeLoadedUI extends StatelessWidget {
             horizontal: 20.w,
             vertical: 10.h,
           ),
-          child: BodyHomeScreen(prayerTimes: prayerTimes),
+          child: BodyHomeScreen(
+              prayerTimes: prayerTimes, locationName: locationName),
         ),
       ),
     );
