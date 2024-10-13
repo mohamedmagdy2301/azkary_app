@@ -28,3 +28,4 @@ class PrayerTimesRepository {
     return dataListInfo;
   }
 }
+// https://api.aladhan.com/v1/timings/2022-11-11?latitude=30.5632921&longitude=30.9970544&method=5
