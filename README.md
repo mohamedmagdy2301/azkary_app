@@ -1,3 +1,8 @@
+<div align="center">
+
+# *"وَقُلْ رَبِّ زِدْنِي عِلْمًا"*
+
+</div>
 <br clear="both">
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Protest+Guerrilla&weight=900&size=45&pause=1000&color=F78918&width=835&height=100&lines=فَاذْكُرُونِي+أَذْكُرْكُمْ+%F0%9F%98%8A%E2%9C%8C%EF%B8%8F" alt="Typing SVG" /></a>
 <br clear="both">
