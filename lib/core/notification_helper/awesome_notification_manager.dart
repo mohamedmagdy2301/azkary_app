@@ -53,7 +53,6 @@ class AwesomeNotificationManager {
           soundSource: 'resource://raw/sound_test',
         ),
       ],
-      debug: true,
     );
     AwesomeNotifications().requestPermissionToSendNotifications();
     onActionReceived();

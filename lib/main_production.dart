@@ -24,3 +24,4 @@ void main() async {
     themeCubit: themeCubit,
   ));
 }
+//flutter build apk --flavor production --target lib/main_production.dart --release
